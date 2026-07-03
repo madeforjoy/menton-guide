@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Welcome Home – Menton</title>
+  <meta name="description" content="Welcome guide for 65 Porte de France, Garavan, Menton, France." />
+  <style>
+    :root{
+      --bg:#fffaf2;
+      --card:#ffffff;
+      --ink:#28312f;
+      --muted:#68736f;
+      --line:#eadfce;
+      --accent:#d88c3a;
+      --accent2:#2d6f73;
+      --soft:#f7efe3;
+      --warn:#fff4df;
+      --shadow:0 8px 24px rgba(40,49,47,.08);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      background:linear-gradient(180deg,var(--bg),#fff 35%);
+      color:var(--ink);
+      line-height:1.45;
+    }
+    a{color:var(--accent2);font-weight:700;text-decoration:none}
+    a:hover{text-decoration:underline}
+    header.hero{
+      padding:28px 18px 18px;
+      text-align:left;
+      max-width:920px;
+      margin:auto;
+    }
+    .eyebrow{color:var(--accent2);font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-size:.75rem}
+    h1{font-size:2.1rem;line-height:1.05;margin:.35rem 0 .5rem}
+    h2{font-size:1.65rem;margin:0 0 12px}
+    h3{font-size:1.15rem;margin:18px 0 8px}
+    p{margin:8px 0}
+    .subtitle{font-size:1rem;color:var(--muted);font-weight:600}
+    .version{font-size:.84rem;color:var(--muted);margin-top:12px}
+    .hero-card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:18px;
+      margin-top:18px;
+    }
+    nav.quick{
+      position:sticky;
+      top:0;
+      z-index:10;
+      background:rgba(255,250,242,.96);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--line);
+      padding:10px 10px;
+      overflow-x:auto;
+      white-space:nowrap;
+    }
+    nav.quick a{
+      display:inline-block;
+      padding:10px 12px;
+      margin:0 3px;
+      border-radius:999px;
+      background:#fff;
+      border:1px solid var(--line);
+      color:var(--ink);
+      font-size:.9rem;
+      box-shadow:0 2px 8px rgba(40,49,47,.05);
+    }
+    main{max-width:920px;margin:auto;padding:10px 14px 64px}
+    section.page{
+      margin:18px 0 28px;
+      padding:18px;
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+    .tile{
+      display:block;
+      padding:16px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:var(--soft);
+      color:var(--ink);
+      min-height:84px;
+    }
+    .tile strong{display:block;font-size:1.05rem;margin-bottom:5px}
+    .tile span{color:var(--muted);font-size:.9rem;font-weight:500}
+    .card{
+      padding:14px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:#fff;
+      margin:12px 0;
+    }
+    .callout{
+      border-left:5px solid var(--accent);
+      background:var(--warn);
+      padding:12px 14px;
+      border-radius:14px;
+      margin:12px 0;
+    }
+    .tip{
+      border-left:5px solid var(--accent2);
+      background:#edf7f5;
+      padding:12px 14px;
+      border-radius:14px;
+      margin:12px 0;
+    }
+    .placeholder{
+      border:2px dashed #d9c9b3;
+      border-radius:14px;
+      background:#fffdf9;
+      padding:12px;
+      color:var(--muted);
+      margin:10px 0;
+      font-weight:650;
+    }
+    ul,ol{padding-left:1.25rem;margin:8px 0}
+    li{margin:5px 0}
+    .checklist{list-style:none;padding-left:0}
+    .checklist li{padding:8px 10px;border-bottom:1px solid var(--line)}
+    .checklist li:before{content:"✓ ";font-weight:900;color:var(--accent2)}
+    .kv{display:grid;grid-template-columns:130px 1fr;gap:6px 10px;margin:8px 0}
+    .kv div:nth-child(odd){font-weight:800;color:var(--muted)}
+    .small{font-size:.9rem;color:var(--muted)}
+    details{
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:0;
+      margin:10px 0;
+      background:#fff;
+      overflow:hidden;
+    }
+    summary{
+      cursor:pointer;
+      list-style:none;
+      padding:14px;
+      font-weight:800;
+      color:var(--ink);
+    }
+    summary::-webkit-details-marker{display:none}
+    details[open] summary{border-bottom:1px solid var(--line);background:var(--soft)}
+    .details-body{padding:12px 14px}
+    .back{display:block;margin-top:18px;color:var(--muted);font-size:.9rem}
+    footer{text-align:center;color:var(--muted);font-size:.85rem;padding:30px 10px}
+    .search-wrap{margin:14px 0}
+    #search{
+      width:100%;
+      padding:14px 16px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      font-size:1rem;
+      outline:none;
+      box-shadow:0 3px 12px rgba(40,49,47,.05);
+    }
+    mark{background:#fff0a8;border-radius:4px;padding:0 2px}
+    @media (min-width:760px){
+      h1{font-size:3rem}
+      header.hero{padding-top:44px}
+      section.page{padding:24px}
+    }
+    @media print{
+      nav.quick,.search-wrap,.back{display:none}
+      body{background:#fff}
+      section.page{box-shadow:none;break-inside:avoid}
+      a{color:#000;text-decoration:none}
+    }
+  </style>
+</head>
+<body>
+<header class="hero" id="top">
+  <div class="eyebrow">Welcome Home</div>
+  <h1>Welcome to Our Home in Menton</h1>
+  <div class="subtitle">65 Porte de France • Garavan • Menton • France</div>
+  <div class="version">Prototype website • Version 0.1 • Built from the 7-03-26 guide draft</div>
+  <div class="hero-card">
+    <p>Welcome! We're so glad you're here.</p>
+    <p>This guide is designed to help you quickly find what you need during your stay. Don't feel like you need to read it cover to cover — just jump to the section you need when you need it.</p>
+    <p><strong>Relax. Walk along the sea. Have a long lunch. You're on the Riviera now.</strong></p>
+  </div>
+</header>
+
+<nav class="quick" aria-label="Main navigation">
+  <a href="#just-arrived">⭐ Just Arrived</a>
+  <a href="#home">🏠 The Home</a>
+  <a href="#living">🍽 Kitchen</a>
+  <a href="#getting-around">🚆 Getting Around</a>
+  <a href="#our-menton">🍋 Our Menton</a>
+  <a href="#wish">🌞 Wish We'd Known</a>
+  <a href="#where">📍 Where Is It?</a>
+  <a href="#before-arrive">✈️ Before You Arrive</a>
+  <a href="#before-leave">🚪 Before You Leave</a>
+  <a href="#appendix-coffee">☕ Coffee Help</a>
+</nav>
+
+<main>
+  <section class="page" id="start">
+    <h2>⭐ Start Here</h2>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Search the guide: Wi-Fi, garage, coffee, beach..." />
+    </div>
+    <div class="grid">
+      <a class="tile" href="#just-arrived"><strong>⭐ Just Arrived</strong><span>Address, Wi-Fi, getting in, first hour</span></a>
+      <a class="tile" href="#home"><strong>🏠 The Home</strong><span>Garage, terraces, rooftop, AC, bedrooms</span></a>
+      <a class="tile" href="#living"><strong>🍽 Kitchen & Living</strong><span>Coffee, laundry, groceries, garbage</span></a>
+      <a class="tile" href="#getting-around"><strong>🚆 Getting Around</strong><span>Trains, buses, bikes, walking</span></a>
+      <a class="tile" href="#our-menton"><strong>🍋 Our Menton</strong><span>Food, markets, beach clubs, favorites</span></a>
+      <a class="tile" href="#where"><strong>📍 Where Is It?</strong><span>Find coffee tablets, wine opener, remotes</span></a>
+    </div>
+  </section>
+
+  <section class="page" id="just-arrived">
+    <h2>⭐ Just Arrived</h2>
+    <div class="card">
+      <h3>📍 Apartment Address</h3>
+      <p><strong>65 Porte de France<br>Bâtiment 2<br>06500 Menton, France</strong></p>
+      <p>Look for the middle entrance, Bâtiment 2.</p>
+      <div class="placeholder">📷 Add photo: building showing all three entrances.</div>
+    </div>
+    <div class="card">
+      <h3>☎️ Local Contact</h3>
+      <p><strong>Emanuela Ménage</strong><br>Cleaning • Emergencies • Questions<br><strong>+39 339 893 5689</strong></p>
+    </div>
+    <div class="card">
+      <h3>📶 Wi-Fi</h3>
+      <div class="kv">
+        <div>Apartment</div><div><strong>Livebox2a20</strong></div>
+        <div>Password</div><div><strong>2LxxwSp6kt3vve5C5D</strong></div>
+        <div>Rooftop</div><div><strong>Menton 2-6</strong></div>
+        <div>Password</div><div><strong>Ment0n12345</strong></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>🔑 Getting In</h3>
+      <p><strong>Lobby Key</strong> — building entrance, stairwell, main garage gate.</p>
+      <p><strong>Garage Door Key</strong> — our private garage.</p>
+      <p><strong>Rooftop Terrace Key</strong> — rooftop stairwell.</p>
+      <p><strong>Mailbox Key</strong></p>
+      <p><strong>Emergency Apartment Key</strong> — backup if keypad isn't working.</p>
+      <h3>🛗 Elevator</h3>
+      <p>Enter <strong>246A</strong>, then press the floor:</p>
+      <ul>
+        <li><strong>RC</strong> = Lobby</li>
+        <li><strong>6</strong> = Apartment</li>
+        <li><strong>SS</strong> = Garage</li>
+      </ul>
+      <div class="tip"><strong>Good to Know:</strong> After entering the code and pressing your floor, the inner elevator door closes automatically.</div>
+    </div>
+    <div class="callout">
+      <h3>🌬 Outdoor Furniture & Awnings</h3>
+      <p>If the apartment seems "buttoned up" when you arrive, that's normal. Shutters may be closed, furniture covered, and cushions secured because strong Riviera winds can arrive quickly.</p>
+      <ul class="checklist">
+        <li>Retract both awnings before leaving either terrace.</li>
+        <li>Return cushions and covers if you used them.</li>
+        <li>Leave everything the way you found it.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🌞 Your First Hour</h3>
+      <ul class="checklist">
+        <li>Connect to Wi-Fi.</li>
+        <li>Open the shutters.</li>
+        <li>Turn on the AC if you'd like.</li>
+        <li>Drop your bags.</li>
+        <li>Walk to the sea.</li>
+        <li>Relax.</li>
+      </ul>
+      <div class="tip"><strong>Jack & Donna Tip:</strong> If you're hungry after traveling, we recommend <strong>Côtes de Menton</strong>, only about a block away.</div>
+    </div>
+    <div class="card">
+      <h3>🇫🇷 One Little Cultural Tip</h3>
+      <p>Always begin with <strong>Bonjour</strong>. Whether you're entering a bakery, café, pharmacy, shop—or even boarding a bus—a simple greeting goes a long way.</p>
+      <p>When leaving: <strong>Merci</strong>, <strong>Au revoir</strong>, <strong>Bonne journée</strong> (daytime), or <strong>Bonne soirée</strong> (evening).</p>
+    </div>
+    <a class="back" href="#start">↑ Back to Start</a>
+  </section>
+
+  <section class="page" id="home">
+    <h2>🏠 The Home</h2>
+    <p>Between the main terrace, rooftop terrace, and balconies, you may spend as much time outside as inside.</p>
+
+    <details open><summary>🚗 Garage</summary><div class="details-body">
+      <p>Take the elevator to <strong>SS</strong>. When you exit, our garage door is directly ahead and slightly to the left.</p>
+      <p>From outside, walk around the building to the right and follow the driveway down the ramp. The white post opens the main garage gate using your lobby key.</p>
+      <div class="placeholder">📷 Add photos: garage door and white post.</div>
+      <p><strong>Garage door key</strong> opens our private garage. Turn the key and move the handle to the right.</p>
+      <p>To leave, use the key switch beside the garage gate. The gate closes automatically.</p>
+    </div></details>
+
+    <details><summary>🌿 Main Terrace</summary><div class="details-body">
+      <p>To the right of the large sliding doors are two rows of metal buttons.</p>
+      <ul>
+        <li><strong>Upper row:</strong> terrace lights.</li>
+        <li><strong>Lower left controls:</strong> two large metal shutters.</li>
+        <li><strong>Third control:</strong> terrace awning.</li>
+      </ul>
+      <p>For each shutter: left button = Start/Stop, right button = Up/Down.</p>
+      <div class="placeholder">📷 Add photo: terrace control panel.</div>
+      <div class="callout">Please retract the awning whenever you're finished using the terrace or leaving the apartment.</div>
+    </div></details>
+
+    <details><summary>🌿 Bedroom Balconies</summary><div class="details-body">
+      <p>Each bedroom has a small balcony with similar metal shutter controls. They don't have awnings.</p>
+    </div></details>
+
+    <details><summary>🌅 Rooftop Terrace</summary><div class="details-body">
+      <p>Exit the apartment, turn right before the elevator, and go up one flight. Use the rooftop terrace key.</p>
+      <ul>
+        <li>Outdoor kitchen: plates, glasses, napkins, serving items.</li>
+        <li>Bluetooth speaker in rooftop cabinet.</li>
+        <li>TRX, resistance bands, yoga mats.</li>
+        <li>Outdoor shower for cooling off or rinsing sand.</li>
+        <li>Awning remote in drawer next to rooftop sink.</li>
+      </ul>
+      <div class="placeholder">📷 Add photo: outdoor kitchen. 🎥 Add video: Bluetooth speaker.</div>
+      <p>Lock both the rooftop door and stairwell door when you leave.</p>
+      <div class="tip"><strong>Jack & Donna Tip:</strong> About an hour before sunset is our favorite time up here.</div>
+    </div></details>
+
+    <details><summary>❄️ Air Conditioning</summary><div class="details-body">
+      <ul>
+        <li>Three units: one in each bedroom and one in the kitchen/living room.</li>
+        <li>The apartment cools quickly.</li>
+        <li>The kitchen unit works best when bedroom doors are closed.</li>
+        <li>Turn off units in rooms you're not using.</li>
+        <li>Close shutters and terrace doors at night to keep cool and block morning sun.</li>
+      </ul>
+    </div></details>
+
+    <details><summary>🛏 Bedrooms & Storage</summary><div class="details-body">
+      <p><strong>Primary Bedroom:</strong> queen-size bed, full closet, private balcony.</p>
+      <p><strong>Sleeping Room:</strong> trundle bed; pull second mattress from underneath. Balcony, but no closet.</p>
+      <p><strong>Living Room:</strong> sleeper sofa.</p>
+      <p><strong>Clothes Storage:</strong> primary closet plus hallway closet with hanging space and fabric shelving. Bathrooms have storage for toiletries.</p>
+    </div></details>
+    <a class="back" href="#start">↑ Back to Start</a>
+  </section>
+
+  <section class="page" id="living">
+    <h2>🍽 Kitchen & Everyday Living</h2>
+    <p>The kitchen is compact, but we've found it has everything we need for everyday meals.</p>
+
+    <div class="card">
+      <h3>☕ Coffee</h3>
+      <p>The Krups machine makes excellent coffee using whole beans or ground coffee.</p>
+      <p>🎥 <a href="https://youtu.be/1GVhL0dfIG4?si=UF39qWq2HOTTHjjN" target="_blank" rel="noopener">Coffee Basics video</a></p>
+      <div class="tip">Recently cleaned and descaled. If the red <strong>CALC</strong> light appears to the right of Start, you'll still have about <strong>30 cups</strong> before descaling is necessary. See Coffee Help at the end.</div>
+    </div>
+
+    <div class="card">
+      <h3>🧺 Laundry</h3>
+      <ul>
+        <li>Use <strong>30°C</strong> for most loads.</li>
+        <li>Detergent is in the cabinet beneath the oven.</li>
+        <li>Use about <strong>two tablespoons</strong> of liquid detergent.</li>
+        <li>The machine washes but does not dry.</li>
+        <li>Drying rack is on the apartment terrace just outside the kitchen.</li>
+      </ul>
+      <div class="placeholder">🎥 Add Donna's washing machine video.</div>
+    </div>
+
+    <div class="card">
+      <h3>🛒 Grocery Shopping</h3>
+      <p>Closest grocery store: <strong>U Express</strong>, a short walk toward town.</p>
+      <p>Folding grocery cart: coat closet near the front door.</p>
+      <div class="placeholder">📍 Add Google Maps link. 📷 Add grocery cart photo.</div>
+    </div>
+
+    <div class="card">
+      <h3>♻️ Garbage & Recycling</h3>
+      <p>The garbage and recycling room is on the <strong>SS (garage)</strong> level.</p>
+      <p>Glass is collected separately. Please empty recyclables directly into the appropriate container; don't leave them inside plastic bags.</p>
+      <div class="placeholder">📷 Add photo: garbage and recycling area.</div>
+    </div>
+    <a class="back" href="#start">↑ Back to Start</a>
+  </section>
+
+  <section class="page" id="getting-around">
+    <h2>🚆 Getting Around</h2>
+    <p>Walking, trains, buses, and bicycles make it surprisingly easy to explore the Riviera.</p>
+    <div class="card"><h3>🚆 Trains</h3>
+      <p><strong>Menton Garavan</strong> station is a <strong>3–5 minute walk</strong>.</p>
+      <p><strong>Italy:</strong> walk under the tracks to the opposite platform for Ventimiglia.</p>
+      <p><strong>Monaco, Nice & beyond:</strong> platform closest to the apartment.</p>
+      <p>Use <strong>SNCF Connect</strong> for tickets, schedules, delays, and stored tickets.</p>
+      <div class="tip">For longer trips, book early for better prices and more train options.</div>
+    </div>
+    <div class="card"><h3>🚌 Buses</h3>
+      <p>Nearest stop is outside the building to the left. Tap credit card, Apple Pay, or Google Pay when boarding. Press the red <strong>STOP</strong> button before your stop.</p>
+      <p>Google Maps works well for bus routes. Most routes stop around <strong>7:00–7:30 p.m.</strong></p>
+    </div>
+    <div class="card"><h3>🚲 Bicycles</h3>
+      <p>Across the street, go down the staircases to the lower level and turn right for <strong>R Bicycles</strong>.</p>
+      <ul><li>Traditional bikes: about €20/day</li><li>Electric bikes: about €40/day</li></ul>
+      <p>Feel free to use our helmets.</p>
+    </div>
+    <div class="card"><h3>🚕 Bolt & Uber</h3>
+      <p>Uber is available but can be expensive for short trips. We've had downtown rides back cost €20–25. Bolt may be less expensive.</p>
+    </div>
+    <div class="card"><h3>🚶 Walking</h3>
+      <ul>
+        <li>Beach — 2 minutes</li>
+        <li>Garavan Station — 3–5 minutes</li>
+        <li>U Express — 5–7 minutes</li>
+        <li>Old Town — 20–25 minutes</li>
+      </ul>
+      <div class="tip">Some favorite days are just wandering until something catches your attention.</div>
+    </div>
+    <a class="back" href="#start">↑ Back to Start</a>
+  </section>
+
+  <section class="page" id="our-menton">
+    <h2>🍋 Our Menton</h2>
+    <p>These aren't necessarily "the best." They're simply the places we return to again and again.</p>
+    <div class="grid">
+      <div class="card"><h3>🥐 Atelier Boulanger</h3><p>Favorite croissants and pain au chocolat. Awarded Best Pain au Chocolat in France. Go early.</p><p>📍 Google Maps link</p></div>
+      <div class="card"><h3>🍰 AVE Pâtisserie</h3><p>Beautiful pastries and desserts.</p><p>📍 Google Maps link</p></div>
+      <div class="card"><h3>☕ Eunoia Coffee Shop</h3><p>Wonderful coffee, creative brunches, relaxed atmosphere. Check hours before going.</p><p>📍 Google Maps link</p></div>
+      <div class="card"><h3>🛒 Marché des Halles</h3><p>Fresh produce, cheese, bread, seafood, flowers, locals. Go hungry.</p><p>📍 Google Maps link</p></div>
+      <div class="card"><h3>🇮🇹 Ventimiglia Market</h3><p>Train to Italy for fresh pasta, produce, cheese, olive oil, and surprises. Check schedule.</p><p>📍 Google Maps link</p></div>
+      <div class="card"><h3>🍕 Pizza e Basta</h3><p>Short walk from the apartment. Easy evening close to home.</p><p>📍 Google Maps link</p></div>
+      <div class="card"><h3>🍕 Mirazur Pizza</h3><p>Created by the Michelin-starred Mirazur team. Fun after Sablettes Beach.</p><p>📍 Google Maps link</p></div>
+      <div class="card"><h3>🍽 Côtes de Menton</h3><p>Neighborhood favorite. Friendly, relaxed, good value, about a block away.</p><p>📍 Google Maps link</p></div>
+      <div class="card"><h3>🍽 Le Stanley</h3><p>Dependable downtown favorite with broad menu and consistently good food.</p><p>📍 Google Maps link</p></div>
+      <div class="card"><h3>🍽 Tony's</h3><p>A little more upscale and good for a leisurely dinner.</p><p>📍 Website link</p></div>
+      <div class="card"><h3>🏖 Le Sablettes Beach Club</h3><p>Loungers, umbrellas, food, drinks, bathrooms, showers, shade. Lunch and drinks can add up.</p><p>📍 Google Maps link</p></div>
+    </div>
+    <div class="tip"><strong>Favorite Evening:</strong> No reservation. No schedule. Just walk — toward old town, toward Italy, or nowhere in particular.</div>
+    <a class="back" href="#start">↑ Back to Start</a>
+  </section>
+
+  <section class="page" id="wish">
+    <h2>🌞 Things We Wish We'd Known</h2>
+    <div class="grid">
+      <div class="card"><h3>🌅 Life Happens Later</h3><p>Summer sunsets are often 9:00–9:30 p.m. Dinner at 8:30 or 9:00 is normal.</p></div>
+      <div class="card"><h3>🚶 Walk More</h3><p>We assumed we'd use the car. Instead, we walk almost everywhere.</p></div>
+      <div class="card"><h3>🚆 Train Is Your Friend</h3><p>No parking, no traffic, beautiful scenery. Often our first choice.</p></div>
+      <div class="card"><h3>🛒 Shop Like a Local</h3><p>Bakery, market, or grocery every day or two. Fresh everything.</p></div>
+      <div class="card"><h3>🏖 Try a Beach Club</h3><p>Loungers, umbrellas, food, bathrooms, shade. Worth it for a relaxing afternoon.</p></div>
+      <div class="card"><h3>🌬 Respect the Wind</h3><p>Beautiful mornings can become windy afternoons. Retract awnings whenever finished.</p></div>
+      <div class="card"><h3>🇮🇹 Italy Is Next Door</h3><p>A short train ride for lunch, shopping, or a market morning.</p></div>
+      <div class="card"><h3>❤️ Slow Down</h3><p>You don't need to fill every hour. Menton rewards wandering.</p></div>
+    </div>
+    <a class="back" href="#start">↑ Back to Start</a>
+  </section>
+
+  <section class="page" id="where">
+    <h2>📍 Where Is It?</h2>
+    <div class="grid">
+      <div class="card"><h3>☕ Coffee</h3><p><strong>Beans / ground coffee / cleaning tablets / descaling powder:</strong> top shelf above coffee machine.</p><p><strong>QR code:</strong> back of water reservoir.</p><p><strong>Stovetop espresso maker:</strong> upper left kitchen cabinet.</p></div>
+      <div class="card"><h3>🍽 Kitchen</h3><p><strong>Paper plates & napkins:</strong> upper rooftop terrace kitchen cabinet.</p><p><strong>Serving pieces:</strong> various kitchen cabinets.</p><p><strong>Wine opener:</strong> kitchen drawer.</p><p><strong>Large aluminum bowls:</strong> kitchen cabinet.</p></div>
+      <div class="card"><h3>🧺 Laundry</h3><p><strong>Detergent:</strong> cabinet beneath oven.</p><p><strong>Drying rack:</strong> apartment terrace outside kitchen.</p></div>
+      <div class="card"><h3>🛒 Shopping</h3><p><strong>Rolling grocery cart:</strong> coat closet near front door.</p></div>
+      <div class="card"><h3>🌿 Rooftop</h3><p><strong>Bluetooth speaker / yoga mats / TRX / resistance bands:</strong> storage cabinet.</p><p><strong>Standing fan:</strong> living room.</p><p><strong>Awning remote:</strong> drawer next to rooftop sink.</p></div>
+      <div class="card"><h3>🏖 Beach</h3><p><strong>Beach chairs and umbrellas:</strong> garage.</p></div>
+      <div class="card"><h3>🧹 Cleaning</h3><p><strong>Vacuum:</strong> to the right of the oven.</p><p><strong>Swiffer:</strong> hall closet.</p></div>
+      <div class="card"><h3>📺 Technology</h3><p><strong>TV remotes:</strong> respective rooms.</p><p><strong>AC remotes:</strong> mounted with each unit.</p><p><strong>Wi-Fi passwords:</strong> Just Arrived.</p></div>
+      <div class="card"><h3>🚑 Safety</h3><p><strong>First aid kit:</strong> location to be added.</p><p><strong>Flashlight:</strong> location to be added.</p></div>
+    </div>
+    <a class="back" href="#start">↑ Back to Start</a>
+  </section>
+
+  <section class="page" id="before-arrive">
+    <h2>✈️ Before You Arrive</h2>
+    <details open><summary>🛂 Passport</summary><div class="details-body"><p>Carry your passport for international travel. While sightseeing, we usually leave passports safely in the apartment and carry a clear photo on our phones.</p><p>For VAT refunds, some stores may ask for the original passport.</p></div></details>
+    <details><summary>✈️ Arriving in Europe</summary><div class="details-body"><p>Arrival can vary dramatically due to biometric entry and immigration queues. Our quickest landing-to-exit experience has been 45–60 minutes; we've heard first arrivals can take 30 minutes to more than 2½ hours.</p><div class="tip">Don't book a tight train connection after an international flight.</div></div></details>
+    <details><summary>🚕 Airport Transportation</summary><div class="details-body"><p>If traveling with several suitcases, we strongly recommend a taxi into Paris. The fixed fare is generally around €55 and worth it after an overnight flight.</p><p>For Paris taxis, Uber and G7 Taxi are both useful. G7 taxis may have better access near the Paris apartment.</p></div></details>
+    <details><summary>🚄 Long-Distance Trains</summary><div class="details-body"><p>Book early. Reserve seats when possible; we prefer upper level, near luggage storage.</p><p>Most Riviera trains leave from Gare de Lyon. Arrive 45–60 minutes early. Platforms often appear only 15–20 minutes before departure.</p><p>Bring lightweight cable locks for larger luggage if desired.</p></div></details>
+    <details><summary>💶 VAT Refunds</summary><div class="details-body"><p>For larger purchases, ask for a VAT Refund Certificate before leaving the shop. At the airport, scan paperwork at kiosks or use the official VAT refund app where available.</p></div></details>
+    <details><summary>📱 Apps</summary><div class="details-body"><ul><li>Google Maps</li><li>SNCF Connect</li><li>Île-de-France Mobilités / IDF Mobilités</li><li>GetYourGuide</li><li>Bolt</li><li>Uber</li><li>G7 Taxi</li><li>WhatsApp</li></ul><p><strong>Guide:</strong> Victor Bejan, WhatsApp +33 6 31 25 79 17.</p><p><strong>Tour idea:</strong> Molinard Perfume Workshop in Grasse.</p></div></details>
+    <a class="back" href="#start">↑ Back to Start</a>
+  </section>
+
+  <section class="page" id="before-leave">
+    <h2>🚪 Before You Leave</h2>
+    <ul class="checklist">
+      <li>Turn off the air conditioning.</li>
+      <li>Close the metal shutters if you'll be away for a while.</li>
+      <li>Close and lock all terrace doors.</li>
+      <li>Retract both awnings.</li>
+      <li>Return cushions and furniture covers if used.</li>
+      <li>Put away anything that could blow away.</li>
+      <li>Lock rooftop terrace door and stairwell door.</li>
+      <li>Take out garbage and recycling if needed.</li>
+      <li>Check for chargers, passports, and personal items.</li>
+      <li>Leave keys as arranged.</li>
+    </ul>
+    <div class="tip">Thank you for taking such good care of our home.</div>
+    <a class="back" href="#start">↑ Back to Start</a>
+  </section>
+
+  <section class="page" id="appendix-coffee">
+    <h2>☕ Coffee Machine Cleaning & Descaling</h2>
+    <p>You'll know the machine needs attention when the small red <strong>CALC</strong> light appears just to the right of the <strong>Start</strong> button.</p>
+    <p>The machine reminds you after about <strong>200 cups</strong>. Once CALC appears, you still have about <strong>30 more cups</strong>.</p>
+    <ol>
+      <li>Lift out the water reservoir.</li>
+      <li>Turn it around and scan the QR code on the back.</li>
+      <li>Cleaning tablets and descaling powder are on the top shelf above the coffee machine.</li>
+      <li>Use a large aluminum mixing bowl under the spouts.</li>
+    </ol>
+    <p>🎥 <a href="https://youtu.be/lQUMR8pxMWI?si=2SJq6hfloFb0f0Eu" target="_blank" rel="noopener">Official Krups cleaning & descaling video</a></p>
+    <div class="callout">The process takes about 20–25 minutes including rinse. If the machine pauses, it's usually waiting for you to press Start.</div>
+    <a class="back" href="#start">↑ Back to Start</a>
+  </section>
+
+  <section class="page" id="thank-you">
+    <h2>❤️ Thank You</h2>
+    <p>Thank you for staying in our home.</p>
+    <p>If you discover a wonderful restaurant, hidden beach, scenic walk, bakery, or local favorite that isn't already in this guide, we'd genuinely love to hear about it.</p>
+    <p>Most of all, we hope you leave feeling a little more relaxed than when you arrived.</p>
+    <p><strong>With love,<br>Jack & Donna</strong></p>
+  </section>
+</main>
+
+<footer>
+  Welcome Home – Menton • Prototype static site
+</footer>
+
+<script>
+  const search = document.getElementById('search');
+  const pages = [...document.querySelectorAll('section.page')];
+  search?.addEventListener('input', e => {
+    const q = e.target.value.trim().toLowerCase();
+    pages.forEach((p, idx) => {
+      if(!q){ p.style.display = ''; return; }
+      const text = p.innerText.toLowerCase();
+      p.style.display = text.includes(q) || idx === 0 ? '' : 'none';
+    });
+  });
+</script>
+</body>
+</html>
