@@ -97,6 +97,16 @@ li { margin:6px 0; }
 .help-panel { position:fixed; right:12px; bottom:134px; width:min(360px,calc(100% - 24px)); background:white; border:1px solid var(--line); border-radius:24px; box-shadow:var(--shadow); padding:14px; z-index:61; display:none; }
 .help-panel.open { display:block; }
 footer { text-align:center; color:var(--muted); font-size:.85rem; padding:32px 14px 110px; }
+
+.owner-only { display:none; }
+body.family .owner-only { display:block; }
+.media-placeholder { border:1px solid var(--line); border-radius:22px; background:linear-gradient(180deg,#fffaf4,#fff); padding:18px; margin:12px 0; box-shadow:0 12px 30px rgba(26,32,30,.08); }
+.media-placeholder .icon { font-size:2rem; line-height:1; margin-bottom:8px; }
+.media-placeholder strong { display:block; font-size:1.05rem; margin-bottom:4px; }
+.quick-steps { display:grid; gap:10px; margin:12px 0; }
+.step { display:grid; grid-template-columns:34px 1fr; gap:10px; align-items:start; border:1px solid var(--line); background:var(--paper); border-radius:18px; padding:12px; }
+.step b { width:34px; height:34px; display:inline-flex; align-items:center; justify-content:center; border-radius:999px; background:var(--teal2); color:#fff; }
+
 @media(min-width:760px) {
   .page { padding:24px; }
   .nav-grid { grid-template-columns:repeat(3,1fr); }
@@ -149,7 +159,7 @@ footer { text-align:center; color:var(--muted); font-size:.85rem; padding:32px 1
 <section class="page" id="arrive">
   <h2>⭐ Arrive</h2>
   <div class="mini-nav">
-    <a class="chip" href="#address">Address</a><a class="chip" href="#wifi">Wi‑Fi</a><a class="chip" href="#keys">Getting In</a><a class="chip" href="#awnings">Awnings</a><a class="chip" href="#first-hour">First Hour</a><a class="chip" href="#medical">Medical</a>
+    <a class="chip" href="#address">Address</a><a class="chip" href="#wifi">Wi‑Fi</a><a class="chip" href="#keys">Unlocking</a><a class="chip" href="#awnings">Awnings</a><a class="chip" href="#first-hour">First Hour</a><a class="chip" href="#medical">Medical</a>
   </div>
 
   <details id="address" open><summary>📍 Address & Local Contact</summary>
@@ -159,7 +169,7 @@ footer { text-align:center; color:var(--muted); font-size:.85rem; padding:32px 1
       <div class="map-btns"><a href="https://maps.app.goo.gl/7fVJLWtbBbVjhtD87" target="_blank">📍 Open home in Google Maps</a></div>
       <div class="photo-card"><img src="assets/building-two-door.jpg" alt="Building entrance number 2"><div class="caption">Our entrance: Bâtiment 2.</div></div>
       <p><strong>Emanuela Ménage</strong><br>Cleaning • Emergencies • Questions<br><strong>+39 339 893 5689</strong></p>
-      <div class="tip owner-only"><strong>Family & Friends:</strong> Jack and Donna contact information can be added here later if desired. This note only appears with the family password.</div>
+      <div class="tip owner-only"><strong>Family & Friends:</strong> Jack & Donna are your hosts. Their direct contact information is provided separately to family guests; for anything local or urgent, Emanuela is still the fastest contact.</div>
       <div class="tip"><strong>Maintenance & Questions:</strong> If anything isn't working properly, or if you have any questions during your stay, please contact Emanuela. She'll help directly or arrange maintenance if needed.</div>
     </div>
   </details>
@@ -175,13 +185,37 @@ footer { text-align:center; color:var(--muted); font-size:.85rem; padding:32px 1
     </div>
   </details>
 
-  <details id="keys"><summary>🔑 Getting In</summary>
+  <details id="keys" open><summary>🔑 Unlocking the Apartment</summary>
     <div class="inside">
+      <div class="media-placeholder"><div class="icon">🎥</div><strong>Apartment entry video coming here.</strong><p class="small">This will show the keypad, Yale button, waiting for the lock cycle, and pressing the handle down.</p></div>
+      <h3>Using Your Personal Keypad Code</h3>
+      <p>Each guest receives a private keypad code.</p>
+      <div class="quick-steps">
+        <div class="step"><b>1</b><div>Enter your code.</div></div>
+        <div class="step"><b>2</b><div>Press the <strong>Yale</strong> button.</div></div>
+        <div class="step"><b>3</b><div>Be patient. The lock may take <strong>10–15 seconds</strong>.</div></div>
+        <div class="step"><b>4</b><div>The lock will turn <strong>five times</strong>. When it stops turning, press the handle down.</div></div>
+      </div>
+      <div class="two">
+        <div class="media-placeholder"><div class="icon">📷</div><strong>Keypad photo coming here.</strong><p class="small">For now: enter code, press Yale, wait, then use the handle.</p></div>
+        <div class="media-placeholder"><div class="icon">📷</div><strong>Eye-level deadbolt photo coming here.</strong><p class="small">From inside, slide the eye-level deadbolt to the left.</p></div>
+      </div>
+      <h3>Using the Backup Key</h3>
+      <p>The key also operates the European high-security multipoint lock. More than four complete turns is normal.</p>
+      <ul>
+        <li><strong>To unlock:</strong> insert the key, turn it clockwise through more than four complete turns until it stops, then press the handle down.</li>
+        <li><strong>To lock:</strong> close the door and turn the key counterclockwise through more than four complete turns until it stops.</li>
+      </ul>
+      <h3>Leaving the Apartment</h3>
+      <p>Press the <strong>Yale</strong> button and be patient while the lock completes its locking cycle.</p>
+      <h3>Locking From Inside</h3>
+      <p>Slide the eye-level deadbolt to the left.</p>
+      <div class="tip"><strong>Trouble?</strong> Contact Emanuela.</div>
+      <h3>Other Keys</h3>
       <p><strong>Lobby Key</strong> — building entrance, stairwell, main garage gate.</p>
       <p><strong>Garage Door Key</strong> — our private garage.</p>
       <p><strong>Rooftop Terrace Key</strong> — rooftop stairwell.</p>
       <p><strong>Mailbox Key</strong></p>
-      <p><strong>Emergency Apartment Key</strong> — backup if keypad isn't working.</p>
       <h3>Elevator</h3>
       <p>Enter <strong>246A</strong>, then press <strong>RC</strong> for lobby, <strong>6</strong> for apartment, or <strong>SS</strong> for garage.</p>
       <div class="two">
@@ -195,10 +229,11 @@ footer { text-align:center; color:var(--muted); font-size:.85rem; padding:32px 1
     <div class="inside">
       <p>If the apartment seems buttoned up when you arrive, that is normal. Strong Riviera winds can arrive quickly.</p>
       <ul class="check">
-        <li>Retract both awnings before leaving either terrace.</li>
+        <li>Retract the awnings whenever you leave the apartment or rooftop.</li>
         <li>Return cushions and covers if you used them.</li>
-        <li>Leave everything the way you found it.</li>
+        <li>Put away anything that could blow away.</li>
       </ul>
+      <div class="tip">The controls are changing soon, so we are keeping this simple for now.</div>
     </div>
   </details>
 
@@ -215,11 +250,11 @@ footer { text-align:center; color:var(--muted); font-size:.85rem; padding:32px 1
 
   <details id="medical"><summary>🚑 Medical Care</summary>
     <div class="inside">
-      <p><strong>Life-threatening emergency:</strong> call <strong>112</strong>, the European emergency number.</p>
-      <p><strong>Finding a doctor:</strong> in France, almost everyone uses <a href="https://www.doctolib.fr" target="_blank">Doctolib</a> to find doctors, specialists, urgent care appointments, and many pharmacies.</p>
-      <p>For everyday illnesses or minor injuries, the nearest pharmacy is an excellent first stop. French pharmacists are highly trained.</p>
+      <p><strong>Life-threatening emergency:</strong> call <strong>112</strong>.</p>
+      <p><strong>Find a doctor:</strong> use <a href="https://www.doctolib.fr" target="_blank">Doctolib</a>.</p>
+      <p><strong>Minor issue:</strong> start with the nearest pharmacy. French pharmacists are highly trained.</p>
+      <p><strong>Unsure?</strong> Contact Emanuela.</p>
       <div class="map-btns"><a href="https://maps.app.goo.gl/ak6qqa1o4akoAbnb8" target="_blank">📍 Nearest pharmacy</a><a href="https://www.doctolib.fr" target="_blank">🩺 Open Doctolib</a></div>
-      <p>If you're unsure what to do, contact Emanuela.</p>
     </div>
   </details>
 </section>
@@ -243,10 +278,9 @@ footer { text-align:center; color:var(--muted); font-size:.85rem; padding:32px 1
 
   <details id="terrace"><summary>🌿 Main Terrace & Balconies</summary>
     <div class="inside">
-      <p>To the right of the large sliding doors are two rows of metal buttons.</p>
-      <ul><li><strong>Upper row:</strong> terrace lights.</li><li><strong>Lower controls:</strong> metal shutters and terrace awning.</li><li><strong>Left button:</strong> Start / Stop.</li><li><strong>Right button:</strong> Up / Down.</li></ul>
-      <p>Bedroom balconies have similar shutter controls and no awnings.</p>
-      <div class="placeholder">📷 Add later: terrace control buttons.</div>
+      <p>Enjoy the terraces, but please retract the awnings whenever you leave the apartment. Riviera winds can arrive quickly.</p>
+      <ul class="check"><li>Retract awnings before leaving.</li><li>Bring cushions and covers back if you used them.</li><li>Close terrace doors when AC is on.</li></ul>
+      <div class="tip">We’ll update this section after the new controls are installed.</div>
     </div>
   </details>
 
@@ -312,10 +346,14 @@ footer { text-align:center; color:var(--muted); font-size:.85rem; padding:32px 1
     <div class="card"><h3>🛒 Marché des Halles</h3><p>Fresh produce, cheese, bread, seafood, flowers. Go hungry.</p><div class="map-btns"><a href="https://maps.app.goo.gl/VtxcJi7o2TeL1o739" target="_blank">📍 Maps</a></div></div>
     <div class="card"><h3>🇮🇹 Ventimiglia Market</h3><p>Train to Italy for fresh pasta, produce, cheese, olive oil.</p><div class="map-btns"><a href="https://maps.app.goo.gl/TWkbB22psKvZXqs68" target="_blank">📍 Maps</a></div></div>
     <div class="card"><h3>🍕 Pizza e Basta</h3><p>Easy evening close to home.</p><div class="map-btns"><a href="https://maps.app.goo.gl/Fqrzuc3Yg7uQQSNLA" target="_blank">📍 Maps</a></div></div>
-    <div class="card"><h3>🍕 La Pecora Negra</h3><p>Mirazur team's pizza spot.</p><div class="map-btns"><a href="https://maps.app.goo.gl/vZf9abaY3Gq6CWg16" target="_blank">📍 Maps</a></div></div>
+    <div class="card"><h3>🍕 La Pecora Negra</h3><p>Pizza and a casual Italian evening.</p><div class="map-btns"><a href="https://maps.app.goo.gl/vZf9abaY3Gq6CWg16" target="_blank">📍 Maps</a></div></div>
     <div class="card"><h3>🍽 Côtes de Menton</h3><p>Neighborhood favorite, about a block away.</p><div class="map-btns"><a href="https://maps.app.goo.gl/2Lu3SJZNgfhyJ7V39" target="_blank">📍 Maps</a></div></div>
     <div class="card"><h3>🍽 Le Stanley</h3><p>Dependable downtown favorite.</p><div class="map-btns"><a href="https://maps.app.goo.gl/qMAGcRNaFNzu7xcB8" target="_blank">📍 Maps</a></div></div>
     <div class="card"><h3>🍽 Tony's</h3><p>A little more upscale.</p><div class="map-btns"><a href="https://maps.app.goo.gl/RPzp5aN4XDAcBbn39" target="_blank">📍 Maps</a></div></div>
+    <div class="card"><h3>🍝 La Trattoria</h3><p>Italian cuisine.</p><div class="map-btns"><a href="https://share.google/J1NYqgy2jk7A7b51Q" target="_blank">📍 Maps</a></div></div>
+    <div class="card"><h3>🇫🇷 Le Bistrot des Jardins</h3><p>Traditional French cuisine.</p><div class="map-btns"><a href="https://share.google/As2sNxulr7mmnjWEc" target="_blank">📍 Maps</a></div></div>
+    <div class="card"><h3>🥂 L’Orangeraie</h3><p>French fine dining and a celebration option.</p><div class="map-btns"><a href="https://share.google/As2sNxulr7mmnjWEc" target="_blank">📍 Maps</a></div></div>
+    <div class="card"><h3>🍋 La Mandragore</h3><p>Local cuisine, bistro style.</p><div class="map-btns"><a href="https://share.google/2sg21cvNweLTY3dl2" target="_blank">📍 Maps</a></div></div>
     <div class="card"><h3>🏖 Les Sablettes Beach Club</h3><p>Loungers, umbrellas, food, drinks, showers, shade.</p><div class="map-btns"><a href="https://maps.app.goo.gl/jdgukbmEAFBaY74H9" target="_blank">📍 Maps</a></div></div>
   </div>
 </section>
@@ -378,17 +416,18 @@ footer { text-align:center; color:var(--muted); font-size:.85rem; padding:32px 1
   <h3>Need Help?</h3>
   <p><strong>Emanuela Ménage</strong><br>Cleaning • Emergencies • Questions</p>
   <div class="map-btns">
-    <a href="tel:+393398935689">Call Emanuela</a>
-    <a href="https://wa.me/393398935689" target="_blank">WhatsApp</a>
-    <a href="https://maps.app.goo.gl/7fVJLWtbBbVjhtD87" target="_blank">Directions Home</a>
-    <a href="#medical">Medical</a>
+    <a href="#keys">🔑 Unlocking the Apartment</a>
+    <a href="tel:+393398935689">📞 Call Emanuela</a>
+    <a href="https://wa.me/393398935689" target="_blank">💬 WhatsApp Emanuela</a>
+    <a href="https://maps.app.goo.gl/7fVJLWtbBbVjhtD87" target="_blank">🏠 Directions Home</a>
+    <a href="#medical">🚑 Medical</a>
   </div>
 </div>
 
 <nav class="bottom">
   <a href="#arrive"><b>⭐</b>Arrive</a><a href="#home"><b>🏠</b>Home</a><a href="#getting"><b>🚆</b>Around</a><a href="#favorites"><b>🍋</b>Favorites</a><a href="#find"><b>📍</b>Find</a><a href="#checkout"><b>🚪</b>Checkout</a>
 </nav>
-<footer>Welcome Home • Menton • Private guest guide</footer>
+<footer>Welcome Home • Menton • Private guest guide • Version 2.1</footer>
 
 <script>
 const FAMILY_PASSWORD = "Menton2026";
