@@ -397,9 +397,12 @@ const gate = document.getElementById("gate");
 const pw = document.getElementById("pw");
 const err = document.getElementById("err");
 function unlock(){
-  if(pw.value.trim() === PASSWORD){
-    sessionStorage.setItem("mentonGuideUnlocked","yes");
+  const v = pw.value.trim();
+  if(v === FAMILY_PASSWORD || v === GUEST_PASSWORD){
+    const mode = v === FAMILY_PASSWORD ? "family" : "guest";
+    sessionStorage.setItem("mentonGuideUnlocked", mode);
     document.body.classList.remove("locked");
+    if(mode === "family") document.body.classList.add("family");
     gate.style.display = "none";
     location.hash = "#top";
   } else {
@@ -408,7 +411,12 @@ function unlock(){
 }
 document.getElementById("unlock").addEventListener("click", unlock);
 pw.addEventListener("keydown", e => { if(e.key === "Enter") unlock(); });
-if(sessionStorage.getItem("mentonGuideUnlocked") === "yes"){ document.body.classList.remove("locked"); gate.style.display="none"; }
+const savedMode = sessionStorage.getItem("mentonGuideUnlocked");
+if(savedMode){
+  document.body.classList.remove("locked");
+  if(savedMode === "family") document.body.classList.add("family");
+  gate.style.display="none";
+}
 
 const helpBtn = document.getElementById("helpBtn");
 const helpPanel = document.getElementById("helpPanel");
