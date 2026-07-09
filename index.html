@@ -94,8 +94,13 @@ li { margin:6px 0; }
 .bottom a { padding:9px 3px 11px; text-align:center; color:var(--ink); font-size:.72rem; font-weight:900; }
 .bottom b { display:block; font-size:1.13rem; line-height:1; }
 .help-fab { position:fixed; right:14px; bottom:80px; z-index:60; border:0; background:var(--teal2); color:white; border-radius:999px; box-shadow:0 16px 45px rgba(31,87,86,.35); padding:12px 14px; font-weight:950; }
-.help-panel { position:fixed; right:12px; bottom:134px; width:min(360px,calc(100% - 24px)); background:white; border:1px solid var(--line); border-radius:24px; box-shadow:var(--shadow); padding:14px; z-index:61; display:none; }
-.help-panel.open { display:block; }
+.help-backdrop { position:fixed; inset:0; z-index:58; background:rgba(23,33,31,.22); opacity:0; pointer-events:none; transition:opacity .18s ease; }
+.help-backdrop.open { opacity:1; pointer-events:auto; }
+.help-panel { position:fixed; left:10px; right:10px; bottom:10px; width:min(560px,calc(100% - 20px)); margin:0 auto; background:white; border:1px solid var(--line); border-radius:28px; box-shadow:0 22px 70px rgba(26,32,30,.26); padding:16px; z-index:61; transform:translateY(calc(100% + 24px)); opacity:0; pointer-events:none; transition:transform .22s ease, opacity .18s ease; }
+.help-panel.open { transform:translateY(0); opacity:1; pointer-events:auto; }
+.help-actions { display:grid; gap:8px; margin-top:10px; }
+.help-actions a { display:flex; align-items:center; gap:10px; border:1px solid var(--line); background:var(--paper); border-radius:16px; padding:12px 13px; color:var(--ink); font-weight:950; }
+.badge { display:inline-flex; align-items:center; width:max-content; border-radius:999px; background:var(--paper); border:1px solid var(--line); color:var(--muted); font-size:.72rem; font-weight:950; padding:5px 8px; margin-bottom:8px; }
 footer { text-align:center; color:var(--muted); font-size:.85rem; padding:32px 14px 110px; }
 
 .owner-only { display:none; }
@@ -147,7 +152,7 @@ body.family .owner-only { display:block; }
   <p class="sub">Tap what you need. No scrolling through a manual.</p>
   <input class="search" id="search" type="search" placeholder="Search: Wi‑Fi, garage, coffee, beach...">
   <div class="nav-grid">
-    <a class="nav-card" href="#arrive"><strong>⭐ Arrive</strong><span>Address, Wi‑Fi, keys, first hour</span></a>
+    <a class="nav-card" href="#arrive"><strong>⭐ Arrive</strong><span>Building, elevator, unlocking, Wi‑Fi</span></a>
     <a class="nav-card" href="#home"><strong>🏠 The Home</strong><span>Garage, terraces, AC, bedrooms</span></a>
     <a class="nav-card" href="#getting"><strong>🚆 Getting Around</strong><span>Trains, buses, bikes, walking</span></a>
     <a class="nav-card" href="#favorites"><strong>🍋 Our Favorites</strong><span>Food, markets, beach clubs</span></a>
@@ -159,7 +164,7 @@ body.family .owner-only { display:block; }
 <section class="page" id="arrive">
   <h2>⭐ Arrive</h2>
   <div class="mini-nav">
-    <a class="chip" href="#address">Address</a><a class="chip" href="#wifi">Wi‑Fi</a><a class="chip" href="#keys">Unlocking</a><a class="chip" href="#awnings">Awnings</a><a class="chip" href="#first-hour">First Hour</a><a class="chip" href="#medical">Medical</a>
+    <a class="chip" href="#address">Address</a><a class="chip" href="#elevator">Elevator</a><a class="chip" href="#keys">Unlocking</a><a class="chip" href="#wifi">Wi‑Fi</a><a class="chip" href="#awnings">Awnings</a><a class="chip" href="#first-hour">First Hour</a><a class="chip" href="#medical">Medical</a>
   </div>
 
   <details id="address" open><summary>📍 Address & Local Contact</summary>
@@ -174,13 +179,16 @@ body.family .owner-only { display:block; }
     </div>
   </details>
 
-  <details id="wifi" open><summary>📶 Wi‑Fi</summary>
+  <details id="elevator" open><summary>🛗 Building & Elevator</summary>
     <div class="inside">
-      <div class="info-row">
-        <div>Apartment</div><div><strong>Livebox2a20</strong></div>
-        <div>Password</div><div><strong>2LxxwSp6kt3vve5C5D</strong></div>
-        <div>Rooftop</div><div><strong>Menton 2-6</strong></div>
-        <div>Password</div><div><strong>Ment0n12345</strong></div>
+      <p>From the lobby, use the elevator keypad before selecting the floor.</p>
+      <div class="quick-steps">
+        <div class="step"><b>1</b><div>Enter <strong>246A</strong>.</div></div>
+        <div class="step"><b>2</b><div>Press <strong>RC</strong> for lobby, <strong>6</strong> for the apartment, or <strong>SS</strong> for the garage.</div></div>
+      </div>
+      <div class="two">
+        <div class="photo-card"><img src="assets/elevator-panel.jpg" alt="Elevator keypad"><div class="caption">Elevator keypad.</div></div>
+        <div class="photo-card"><img src="assets/elevator-stairwell.jpg" alt="Elevator and stairwell door"><div class="caption">Elevator and adjacent stairwell door.</div></div>
       </div>
     </div>
   </details>
@@ -216,11 +224,17 @@ body.family .owner-only { display:block; }
       <p><strong>Garage Door Key</strong> — our private garage.</p>
       <p><strong>Rooftop Terrace Key</strong> — rooftop stairwell.</p>
       <p><strong>Mailbox Key</strong></p>
-      <h3>Elevator</h3>
-      <p>Enter <strong>246A</strong>, then press <strong>RC</strong> for lobby, <strong>6</strong> for apartment, or <strong>SS</strong> for garage.</p>
-      <div class="two">
-        <div class="photo-card"><img src="assets/elevator-panel.jpg" alt="Elevator keypad"><div class="caption">Elevator keypad.</div></div>
-        <div class="photo-card"><img src="assets/elevator-stairwell.jpg" alt="Elevator and stairwell door"><div class="caption">Elevator and adjacent stairwell door.</div></div>
+    </div>
+  </details>
+
+
+  <details id="wifi" open><summary>📶 Wi‑Fi</summary>
+    <div class="inside">
+      <div class="info-row">
+        <div>Apartment</div><div><strong>Livebox2a20</strong></div>
+        <div>Password</div><div><strong>2LxxwSp6kt3vve5C5D</strong></div>
+        <div>Rooftop</div><div><strong>Menton 2-6</strong></div>
+        <div>Password</div><div><strong>Ment0n12345</strong></div>
       </div>
     </div>
   </details>
@@ -233,7 +247,6 @@ body.family .owner-only { display:block; }
         <li>Return cushions and covers if you used them.</li>
         <li>Put away anything that could blow away.</li>
       </ul>
-      <div class="tip">The controls are changing soon, so we are keeping this simple for now.</div>
     </div>
   </details>
 
@@ -278,9 +291,8 @@ body.family .owner-only { display:block; }
 
   <details id="terrace"><summary>🌿 Main Terrace & Balconies</summary>
     <div class="inside">
-      <p>Enjoy the terraces, but please retract the awnings whenever you leave the apartment. Riviera winds can arrive quickly.</p>
-      <ul class="check"><li>Retract awnings before leaving.</li><li>Bring cushions and covers back if you used them.</li><li>Close terrace doors when AC is on.</li></ul>
-      <div class="tip">We’ll update this section after the new controls are installed.</div>
+      <p>Enjoy the terraces. Riviera winds can arrive quickly.</p>
+      <ul class="check"><li>Retract awnings whenever you leave.</li><li>Bring cushions and covers back if you used them.</li><li>Close terrace doors when AC is on.</li></ul>
     </div>
   </details>
 
@@ -338,23 +350,24 @@ body.family .owner-only { display:block; }
 
 <section class="page" id="favorites">
   <h2>🍋 Our Favorites</h2>
-  <p class="sub">Places we return to again and again.</p>
+  <p class="sub">A mix of places we love personally and recommendations from trusted local chefs, restaurateurs, and serious food people.</p>
   <div class="nav-grid">
-    <div class="card"><h3>🥐 Atelier Boulanger</h3><p>Favorite croissants and pain au chocolat. Go early.</p><div class="map-btns"><a href="https://maps.app.goo.gl/ciGBxV9FUPEbY5EJ6" target="_blank">📍 Maps</a></div></div>
-    <div class="card"><h3>🍰 AVE Pâtisserie</h3><p>Beautiful pastries and desserts.</p><div class="map-btns"><a href="https://maps.app.goo.gl/besLAG4zgS7ZeRkg6" target="_blank">📍 Maps</a></div></div>
-    <div class="card"><h3>☕ Eunoia Coffee Shop</h3><p>Wonderful coffee and creative brunches. Check hours.</p><div class="map-btns"><a href="https://maps.app.goo.gl/i293VyzQABoU5WmT6" target="_blank">📍 Maps</a></div></div>
-    <div class="card"><h3>🛒 Marché des Halles</h3><p>Fresh produce, cheese, bread, seafood, flowers. Go hungry.</p><div class="map-btns"><a href="https://maps.app.goo.gl/VtxcJi7o2TeL1o739" target="_blank">📍 Maps</a></div></div>
-    <div class="card"><h3>🇮🇹 Ventimiglia Market</h3><p>Train to Italy for fresh pasta, produce, cheese, olive oil.</p><div class="map-btns"><a href="https://maps.app.goo.gl/TWkbB22psKvZXqs68" target="_blank">📍 Maps</a></div></div>
-    <div class="card"><h3>🍕 Pizza e Basta</h3><p>Easy evening close to home.</p><div class="map-btns"><a href="https://maps.app.goo.gl/Fqrzuc3Yg7uQQSNLA" target="_blank">📍 Maps</a></div></div>
-    <div class="card"><h3>🍕 La Pecora Negra</h3><p>Pizza and a casual Italian evening.</p><div class="map-btns"><a href="https://maps.app.goo.gl/vZf9abaY3Gq6CWg16" target="_blank">📍 Maps</a></div></div>
-    <div class="card"><h3>🍽 Côtes de Menton</h3><p>Neighborhood favorite, about a block away.</p><div class="map-btns"><a href="https://maps.app.goo.gl/2Lu3SJZNgfhyJ7V39" target="_blank">📍 Maps</a></div></div>
-    <div class="card"><h3>🍽 Le Stanley</h3><p>Dependable downtown favorite.</p><div class="map-btns"><a href="https://maps.app.goo.gl/qMAGcRNaFNzu7xcB8" target="_blank">📍 Maps</a></div></div>
-    <div class="card"><h3>🍽 Tony's</h3><p>A little more upscale.</p><div class="map-btns"><a href="https://maps.app.goo.gl/RPzp5aN4XDAcBbn39" target="_blank">📍 Maps</a></div></div>
-    <div class="card"><h3>🍝 La Trattoria</h3><p>Italian cuisine.</p><div class="map-btns"><a href="https://share.google/J1NYqgy2jk7A7b51Q" target="_blank">📍 Maps</a></div></div>
-    <div class="card"><h3>🇫🇷 Le Bistrot des Jardins</h3><p>Traditional French cuisine.</p><div class="map-btns"><a href="https://share.google/As2sNxulr7mmnjWEc" target="_blank">📍 Maps</a></div></div>
-    <div class="card"><h3>🥂 L’Orangeraie</h3><p>French fine dining and a celebration option.</p><div class="map-btns"><a href="https://share.google/As2sNxulr7mmnjWEc" target="_blank">📍 Maps</a></div></div>
-    <div class="card"><h3>🍋 La Mandragore</h3><p>Local cuisine, bistro style.</p><div class="map-btns"><a href="https://share.google/2sg21cvNweLTY3dl2" target="_blank">📍 Maps</a></div></div>
-    <div class="card"><h3>🏖 Les Sablettes Beach Club</h3><p>Loungers, umbrellas, food, drinks, showers, shade.</p><div class="map-btns"><a href="https://maps.app.goo.gl/jdgukbmEAFBaY74H9" target="_blank">📍 Maps</a></div></div>
+    <div class="card"><span class="badge">🥐 Bakery</span><h3>Atelier Boulanger</h3><p>Favorite croissants and pain au chocolat. Go early.</p><div class="map-btns"><a href="https://maps.app.goo.gl/ciGBxV9FUPEbY5EJ6" target="_blank">📍 Maps</a></div></div>
+    <div class="card"><span class="badge">🍰 Pâtisserie</span><h3>AVE Pâtisserie</h3><p>Beautiful pastries and desserts.</p><div class="map-btns"><a href="https://maps.app.goo.gl/besLAG4zgS7ZeRkg6" target="_blank">📍 Maps</a></div></div>
+    <div class="card"><span class="badge">☕ Coffee</span><h3>Eunoia Coffee Shop</h3><p>Wonderful coffee and creative brunches. Check hours.</p><div class="map-btns"><a href="https://maps.app.goo.gl/i293VyzQABoU5WmT6" target="_blank">📍 Maps</a></div></div>
+    <div class="card"><span class="badge">🛒 Public Market</span><h3>Marché des Halles</h3><p>Menton’s covered public market for produce, cheese, seafood, flowers, olives, meats, spices, and local specialties. Wander, shop, or pick up lunch.</p><div class="map-btns"><a href="https://maps.app.goo.gl/VtxcJi7o2TeL1o739" target="_blank">📍 Maps</a></div></div>
+    <div class="card"><span class="badge">🇮🇹 Italian Market</span><h3>Ventimiglia Market</h3><p>Train to Italy for fresh pasta, produce, cheese, and olive oil.</p><div class="map-btns"><a href="https://maps.app.goo.gl/TWkbB22psKvZXqs68" target="_blank">📍 Maps</a></div></div>
+    <div class="card"><span class="badge">🍕 Casual</span><h3>Pizza e Basta</h3><p>Easy evening close to home.</p><div class="map-btns"><a href="https://maps.app.goo.gl/Fqrzuc3Yg7uQQSNLA" target="_blank">📍 Maps</a></div></div>
+    <div class="card"><span class="badge">🍕 Pizza</span><h3>La Pecora Negra</h3><p>Pizza and a casual Italian evening.</p><div class="map-btns"><a href="https://maps.app.goo.gl/vZf9abaY3Gq6CWg16" target="_blank">📍 Maps</a></div></div>
+    <div class="card"><span class="badge">🚶 Walkable</span><h3>Côtes de Menton</h3><p>Neighborhood favorite, about a block away.</p><div class="map-btns"><a href="https://maps.app.goo.gl/2Lu3SJZNgfhyJ7V39" target="_blank">📍 Maps</a></div></div>
+    <div class="card"><span class="badge">🍽 Downtown</span><h3>Le Stanley</h3><p>Dependable downtown favorite.</p><div class="map-btns"><a href="https://maps.app.goo.gl/qMAGcRNaFNzu7xcB8" target="_blank">📍 Maps</a></div></div>
+    <div class="card"><span class="badge">🥂 Upscale</span><h3>Tony's</h3><p>A little more upscale.</p><div class="map-btns"><a href="https://maps.app.goo.gl/RPzp5aN4XDAcBbn39" target="_blank">📍 Maps</a></div></div>
+    <div class="card"><span class="badge">👨‍🍳 Chef Recommended</span><h3>🍝 La Trattoria</h3><p>Highly recommended by local chefs, food lovers, and residents for authentic Italian cuisine.</p><div class="map-btns"><a href="https://share.google/J1NYqgy2jk7A7b51Q" target="_blank">📍 Maps</a></div></div>
+    <div class="card"><span class="badge">👨‍🍳 Chef Recommended</span><h3>🇫🇷 Le Bistrot des Jardins</h3><p>Highly recommended for classic French cooking and a traditional bistro experience.</p><div class="map-btns"><a href="https://share.google/As2sNxulr7mmnjWEc" target="_blank">📍 Maps</a></div></div>
+    <div class="card"><span class="badge">🥂 Celebration</span><h3>⭐ L’Orangeraie</h3><p>A favorite local recommendation for fine dining, celebrations, and special occasions.</p><div class="map-btns"><a href="https://share.google/As2sNxulr7mmnjWEc" target="_blank">📍 Maps</a></div></div>
+    <div class="card"><span class="badge">👨‍🍳 Chef Recommended</span><h3>🥘 La Mandragore</h3><p>Recommended by local chefs and food enthusiasts for authentic local cuisine in a relaxed bistro setting.</p><div class="map-btns"><a href="https://share.google/2sg21cvNweLTY3dl2" target="_blank">📍 Maps</a></div></div>
+    <div class="card"><span class="badge">❤️ Our Favorite</span><h3>🌅 Côté Sud</h3><p>The one we’ve been to ourselves. Great atmosphere inside and out; the interior feels especially unique, warm, and authentic. A beautiful choice for a long lunch, sunset dinner, or celebration.</p><div class="map-btns"><a href="https://maps.app.goo.gl/v3TKoACo4hc9cWhj8" target="_blank">📍 Maps</a></div></div>
+    <div class="card"><span class="badge">🏖 Beach Club</span><h3>Les Sablettes Beach Club</h3><p>Loungers, umbrellas, food, drinks, showers, shade.</p><div class="map-btns"><a href="https://maps.app.goo.gl/jdgukbmEAFBaY74H9" target="_blank">📍 Maps</a></div></div>
   </div>
 </section>
 
@@ -411,11 +424,12 @@ body.family .owner-only { display:block; }
 
 </main>
 
-<button class="help-fab" id="helpBtn">Need Help?</button>
-<div class="help-panel" id="helpPanel">
+<button class="help-fab" id="helpBtn" aria-expanded="false" aria-controls="helpPanel">Need Help?</button>
+<div class="help-backdrop" id="helpBackdrop"></div>
+<div class="help-panel" id="helpPanel" role="dialog" aria-label="Need Help">
   <h3>Need Help?</h3>
   <p><strong>Emanuela Ménage</strong><br>Cleaning • Emergencies • Questions</p>
-  <div class="map-btns">
+  <div class="help-actions">
     <a href="#keys">🔑 Unlocking the Apartment</a>
     <a href="tel:+393398935689">📞 Call Emanuela</a>
     <a href="https://wa.me/393398935689" target="_blank">💬 WhatsApp Emanuela</a>
@@ -427,7 +441,7 @@ body.family .owner-only { display:block; }
 <nav class="bottom">
   <a href="#arrive"><b>⭐</b>Arrive</a><a href="#home"><b>🏠</b>Home</a><a href="#getting"><b>🚆</b>Around</a><a href="#favorites"><b>🍋</b>Favorites</a><a href="#find"><b>📍</b>Find</a><a href="#checkout"><b>🚪</b>Checkout</a>
 </nav>
-<footer>Welcome Home • Menton • Private guest guide • Version 2.1</footer>
+<footer>Welcome Home • Menton • Private guest guide • Version 2.2</footer>
 
 <script>
 const FAMILY_PASSWORD = "Menton2026";
@@ -459,7 +473,16 @@ if(savedMode){
 
 const helpBtn = document.getElementById("helpBtn");
 const helpPanel = document.getElementById("helpPanel");
-helpBtn.addEventListener("click", () => helpPanel.classList.toggle("open"));
+const helpBackdrop = document.getElementById("helpBackdrop");
+function setHelp(open){
+  helpPanel.classList.toggle("open", open);
+  helpBackdrop.classList.toggle("open", open);
+  helpBtn.setAttribute("aria-expanded", open ? "true" : "false");
+}
+helpBtn.addEventListener("click", () => setHelp(!helpPanel.classList.contains("open")));
+helpBackdrop.addEventListener("click", () => setHelp(false));
+helpPanel.querySelectorAll("a").forEach(a => a.addEventListener("click", () => setHelp(false)));
+document.addEventListener("keydown", e => { if(e.key === "Escape") setHelp(false); });
 
 const fs = document.getElementById("findSearch");
 if(fs) fs.addEventListener("input", () => {
