@@ -90,6 +90,15 @@ li { margin:6px 0; }
 .hidden { display:none!important; }
 .video-wrap { border-radius:22px; overflow:hidden; border:1px solid var(--line); margin:12px 0; background:#000; }
 .video-wrap video { width:100%; max-height:70svh; }
+.video-card { margin:14px 0 18px; border:1px solid var(--line); border-radius:24px; overflow:hidden; background:#0e1716; box-shadow:0 16px 38px rgba(26,32,30,.16); }
+.video-card video { width:100%; max-height:72svh; background:#000; }
+.video-label { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 14px; background:#fff; }
+.video-label strong { font-size:1rem; }
+.video-label span { color:var(--muted); font-size:.82rem; font-weight:850; white-space:nowrap; }
+.arrival-note { display:grid; gap:10px; margin:12px 0 16px; }
+.arrival-note .card { margin:0; }
+.category-title { margin:26px 0 8px; font-size:1.35rem; }
+
 .bottom { position:fixed; bottom:0; left:0; right:0; z-index:50; background:rgba(255,250,243,.96); border-top:1px solid var(--line); backdrop-filter:blur(18px); display:grid; grid-template-columns:repeat(6,1fr); box-shadow:0 -8px 28px rgba(29,32,31,.1); }
 .bottom a { padding:9px 3px 11px; text-align:center; color:var(--ink); font-size:.72rem; font-weight:900; }
 .bottom b { display:block; font-size:1.13rem; line-height:1; }
@@ -124,7 +133,7 @@ body.family .owner-only { display:block; }
 <body class="locked">
 <div class="gate" id="gate">
   <div class="gate-card">
-    <div class="kicker">Private Guest Guide</div>
+    <div class="kicker">Our Little Corner of Menton</div>
     <h2>Welcome Home</h2>
     <p>Please enter the password you received to open the Menton guide.</p>
     <input id="pw" type="password" placeholder="Password" autocomplete="current-password">
@@ -140,7 +149,7 @@ body.family .owner-only { display:block; }
     <h1>Welcome Home</h1>
     <p>A private guide to our little corner of the Riviera.</p>
     <div class="hero-actions">
-      <a class="btn" href="#arrive">⭐ Start Here</a>
+      <a class="btn" href="#arrive">✈️ First Time Here? Start Here</a>
       <a class="btn secondary" href="#find">📍 Find It</a>
     </div>
   </div>
@@ -148,7 +157,7 @@ body.family .owner-only { display:block; }
 
 <main>
 <section class="page" id="start">
-  <h2>Start Here</h2>
+  <h2>✈️ First Time Here? Start Here</h2>
   <p class="sub">Tap what you need. No scrolling through a manual.</p>
   <input class="search" id="search" type="search" placeholder="Search: Wi‑Fi, garage, coffee, beach...">
   <div class="nav-grid">
@@ -165,6 +174,20 @@ body.family .owner-only { display:block; }
   <h2>⭐ Arrive</h2>
   <div class="mini-nav">
     <a class="chip" href="#address">Address</a><a class="chip" href="#elevator">Elevator</a><a class="chip" href="#keys">Unlocking</a><a class="chip" href="#wifi">Wi‑Fi</a><a class="chip" href="#awnings">Awnings</a><a class="chip" href="#first-hour">First Hour</a><a class="chip" href="#medical">Medical</a>
+  </div>
+
+  <div class="arrival-note">
+    <div class="card">
+      <span class="badge">Before you travel</span>
+      <h3>Connect with Emanuela</h3>
+      <p>Please contact Emanuela at least <strong>one week before arrival</strong> to confirm your arrival time, arrange key pickup or a meeting at the apartment, and tell her how many guests, beds, and towel sets are needed.</p>
+    </div>
+    <div class="card">
+      <span class="badge">Arriving by train</span>
+      <p><strong>Before 7:00 p.m.:</strong> you will typically meet Emanuela at the apartment, so get off at <strong>Menton Garavan</strong>, a short walk away.</p>
+      <p><strong>After 7:00 p.m.:</strong> you will typically use the downtown key pickup near <strong>Menton</strong> station, then walk, take the bus, or use Uber to reach the apartment.</p>
+      <p class="small">Confirm the exact plan with Emanuela before travel, as arrangements may vary.</p>
+    </div>
   </div>
 
   <details id="address" open><summary>📍 Address & Local Contact</summary>
@@ -195,38 +218,42 @@ body.family .owner-only { display:block; }
 
   <details id="keys" open><summary>🔑 Unlocking the Apartment</summary>
     <div class="inside">
-      <div class="media-placeholder"><div class="icon">🎥</div><strong>Apartment entry video coming here.</strong><p class="small">This will show the keypad, Yale button, waiting for the lock cycle, and pressing the handle down.</p></div>
+      <div class="video-card"><video src="assets/entering-apartment.mp4" controls playsinline preload="metadata"></video><div class="video-label"><strong>▶ Entering the apartment</strong><span>Watch first</span></div></div>
       <h3>Using Your Personal Keypad Code</h3>
       <p>Each guest receives a private keypad code.</p>
       <div class="quick-steps">
-        <div class="step"><b>1</b><div>Enter your code.</div></div>
+        <div class="step"><b>1</b><div>Enter your personal code.</div></div>
         <div class="step"><b>2</b><div>Press the <strong>Yale</strong> button.</div></div>
-        <div class="step"><b>3</b><div>Be patient. The lock may take <strong>10–15 seconds</strong>.</div></div>
-        <div class="step"><b>4</b><div>The lock will turn <strong>five times</strong>. When it stops turning, press the handle down.</div></div>
+        <div class="step"><b>3</b><div><strong>Be patient.</strong> It may take <strong>10–15 seconds</strong> before the lock connects and begins unlocking.</div></div>
+        <div class="step"><b>4</b><div>Once it starts, the lock will turn <strong>five times</strong>.</div></div>
+        <div class="step"><b>5</b><div>When it has completely stopped turning, press the handle down and open the door.</div></div>
       </div>
-      <div class="two">
-        <div class="media-placeholder"><div class="icon">📷</div><strong>Keypad photo coming here.</strong><p class="small">For now: enter code, press Yale, wait, then use the handle.</p></div>
-        <div class="media-placeholder"><div class="icon">📷</div><strong>Eye-level deadbolt photo coming here.</strong><p class="small">From inside, slide the eye-level deadbolt to the left.</p></div>
-      </div>
+      <div class="tip"><strong>Nothing happening immediately?</strong> That short delay is completely normal.</div>
+
       <h3>Using the Backup Key</h3>
-      <p>The key also operates the European high-security multipoint lock. More than four complete turns is normal.</p>
+      <p>The key operates a European high-security multipoint lock. More than four complete turns is normal.</p>
       <ul>
-        <li><strong>To unlock:</strong> insert the key, turn it clockwise through more than four complete turns until it stops, then press the handle down.</li>
-        <li><strong>To lock:</strong> close the door and turn the key counterclockwise through more than four complete turns until it stops.</li>
+        <li><strong>To unlock:</strong> insert the key, turn it <strong>counterclockwise</strong> through more than four complete turns until it stops, then press the handle down.</li>
+        <li><strong>To lock:</strong> close the door and turn the key <strong>clockwise</strong> through more than four complete turns until it stops.</li>
       </ul>
+
+      <div class="video-card"><video src="assets/leaving-apartment.mp4" controls playsinline preload="metadata"></video><div class="video-label"><strong>▶ Leaving the apartment</strong><span>Pull firmly</span></div></div>
       <h3>Leaving the Apartment</h3>
-      <p>Press the <strong>Yale</strong> button and be patient while the lock completes its locking cycle.</p>
-      <h3>Locking From Inside</h3>
-      <p>Slide the eye-level deadbolt to the left.</p>
+      <ul class="check"><li>Pull the door firmly closed.</li><li>Press the <strong>Yale</strong> button.</li><li>Wait for the full locking cycle.</li><li>Check the handle before walking away.</li></ul>
+      <div class="warn"><strong>The Yale lock cannot engage unless the door is fully closed.</strong></div>
+
+      <div class="video-card"><video src="assets/secure-at-night.mp4" controls playsinline preload="metadata"></video><div class="video-label"><strong>▶ Securing the apartment at night</strong><span>From inside</span></div></div>
+      <h3>Securing From Inside</h3>
+      <p>Slide the eye-level deadbolt fully to the left at night. Slide it back to the right before leaving.</p>
       <div class="tip"><strong>Trouble?</strong> Contact Emanuela.</div>
+
       <h3>Other Keys</h3>
-      <p><strong>Lobby Key</strong> — building entrance, stairwell, main garage gate.</p>
-      <p><strong>Garage Door Key</strong> — our private garage.</p>
+      <p><strong>Lobby Key</strong> — building entrance, stairwell, and main garage gate.</p>
+      <p><strong>Garage Door Key</strong> — private garage.</p>
       <p><strong>Rooftop Terrace Key</strong> — rooftop stairwell.</p>
       <p><strong>Mailbox Key</strong></p>
     </div>
   </details>
-
 
   <details id="wifi" open><summary>📶 Wi‑Fi</summary>
     <div class="inside">
@@ -278,26 +305,30 @@ body.family .owner-only { display:block; }
 
   <details id="garage"><summary>🚗 Garage</summary>
     <div class="inside">
-      <p>Take the elevator to <strong>SS</strong>. Our garage door is directly ahead and slightly left.</p>
-      <p>Outside access: walk around the building to the right and down the ramp. Use the <strong>lobby key</strong> in the white post to open the main garage gate.</p>
-      <p>Use the <strong>garage door key</strong> for our private garage. The gate closes automatically when leaving.</p>
+      <p>Take the elevator to <strong>SS</strong>. Our private garage is directly ahead and slightly left.</p>
+      <div class="video-card"><video src="assets/open-garage.mp4" controls playsinline preload="metadata"></video><div class="video-label"><strong>▶ Opening the main garage gate</strong><span>Outside access</span></div></div>
+      <p>Walk around the building to the right and down the ramp. Use the <strong>lobby key</strong> in the white post to open the main gate.</p>
+      <div class="video-card"><video src="assets/close-garage.mp4" controls playsinline preload="metadata"></video><div class="video-label"><strong>▶ Closing the garage</strong><span>Before leaving</span></div></div>
+      <p>Use the <strong>garage door key</strong> for the private garage.</p>
       <div class="two">
-        <div class="photo-card"><img src="assets/building-right-garage-bus.jpg" alt="Right side of building with garage ramp and bus stop"><div class="caption">Right side of building. Ramp to garage is just to the right; bus stop is also on this side.</div></div>
-        <div class="photo-card"><img src="assets/garage-ramp-post.jpg" alt="Garage ramp and white post"><div class="caption">Use the lobby key in the white post to open the main garage gate.</div></div>
+        <div class="photo-card"><img src="assets/building-right-garage-bus.jpg" alt="Right side of building with garage ramp and bus stop"><div class="caption">The garage ramp is on the right side of the building.</div></div>
+        <div class="photo-card"><img src="assets/garage-ramp-post.jpg" alt="Garage ramp and white key post"><div class="caption">Use the lobby key in the white post.</div></div>
       </div>
-      <div class="photo-card"><img src="assets/garage-recycling-door.jpg" alt="Garage from bottom of ramp with trash and recycling"><div class="caption">Garage view from bottom of ramp. Trash and recycling are on either side; our garage is at the end.</div></div>
+      <div class="photo-card"><img src="assets/garage-recycling-door.jpg" alt="Garage interior with recycling and private garage"><div class="caption">Our private garage is at the end; trash and recycling are on either side.</div></div>
     </div>
   </details>
 
-  <details id="terrace"><summary>🌿 Main Terrace & Balconies</summary>
+  <details id="terrace"><summary>🌿 Apartment Terrace & Balconies</summary>
     <div class="inside">
-      <p>Enjoy the terraces. Riviera winds can arrive quickly.</p>
-      <ul class="check"><li>Retract awnings whenever you leave.</li><li>Bring cushions and covers back if you used them.</li><li>Close terrace doors when AC is on.</li></ul>
+      <div class="video-card"><video src="assets/downstairs-terrace-remote.mp4" controls playsinline preload="metadata"></video><div class="video-label"><strong>▶ Apartment terrace remote</strong><span>Quick guide</span></div></div>
+      <ul class="check"><li>Retract the awning whenever you leave.</li><li>Bring cushions and covers back if used.</li><li>Close terrace doors when the AC is on.</li></ul>
+      <div class="warn"><strong>Riviera winds can arrive quickly.</strong></div>
     </div>
   </details>
 
   <details id="rooftop" open><summary>🌅 Rooftop Terrace</summary>
     <div class="inside">
+      <div class="video-card"><video src="assets/upper-terrace-remote.mp4" controls playsinline preload="metadata"></video><div class="video-label"><strong>▶ Rooftop terrace remote</strong><span>Quick guide</span></div></div>
       <div class="photo-card"><img src="assets/rooftop-dining.jpg" alt="Rooftop terrace dining table facing sea"><div class="caption">Dining table, seating area, and Mediterranean view.</div></div>
       <p>Exit the apartment, turn right before the elevator, and go up one flight. Use the rooftop terrace key.</p>
       <ul><li>Outdoor kitchen has plates, glasses, napkins, serving items.</li><li>Bluetooth speaker, TRX, resistance bands, and yoga mats are in storage.</li><li>Awning remote is in the drawer next to the rooftop sink.</li><li>Outdoor shower is great for cooling off or rinsing sand.</li></ul>
@@ -319,7 +350,7 @@ body.family .owner-only { display:block; }
   </details>
 
   <details id="beds"><summary>🛏 Bedrooms & Storage</summary>
-    <div class="inside"><p><strong>Primary Bedroom:</strong> queen-size bed, full closet, private balcony.</p><p><strong>Sleeping Room:</strong> trundle bed; pull second mattress from underneath. Balcony, no closet.</p><p><strong>Living Room:</strong> sleeper sofa.</p><p><strong>Storage:</strong> primary closet plus hallway closet with hanging space and fabric shelving. Bathrooms have storage for toiletries.</p><div class="placeholder">📷 Bedroom photo can be added later.</div></div>
+    <div class="inside"><p><strong>Primary Bedroom:</strong> queen-size bed, full closet, private balcony.</p><p><strong>Sleeping Room:</strong> trundle bed; pull second mattress from underneath. Balcony, no closet.</p><p><strong>Living Room:</strong> sleeper sofa.</p><p><strong>Storage:</strong> primary closet plus hallway closet with hanging space and fabric shelving. Bathrooms have storage for toiletries.</p></div>
   </details>
 </section>
 
@@ -441,7 +472,7 @@ body.family .owner-only { display:block; }
 <nav class="bottom">
   <a href="#arrive"><b>⭐</b>Arrive</a><a href="#home"><b>🏠</b>Home</a><a href="#getting"><b>🚆</b>Around</a><a href="#favorites"><b>🍋</b>Favorites</a><a href="#find"><b>📍</b>Find</a><a href="#checkout"><b>🚪</b>Checkout</a>
 </nav>
-<footer>Welcome Home • Menton • Private guest guide • Version 2.2</footer>
+<footer>Created with love for our family and friends. We hope you enjoy our little corner of Menton as much as we do.</footer>
 
 <script>
 const FAMILY_PASSWORD = "Menton2026";
