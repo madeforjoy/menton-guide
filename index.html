@@ -2,534 +2,88 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Welcome Home • Menton</title>
-<meta name="description" content="Private guest guide for 65 Porte de France, Menton.">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Notre Coin de Menton</title>
+<meta name="description" content="Private guide to our little corner of Menton.">
 <meta name="robots" content="noindex,nofollow">
 <style>
-:root {
-  --ink:#17211f; --muted:#66736f; --paper:#fff8ef; --card:#fff;
-  --line:rgba(46,38,30,.14); --teal:#2f7470; --teal2:#1f5756;
-  --gold:#c9883b; --rose:#e8b7ac; --cream:#f4eadc;
-  --shadow:0 18px 55px rgba(26,32,30,.13); --radius:24px;
-}
-* { box-sizing:border-box; }
-html { scroll-behavior:smooth; }
-body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; background:linear-gradient(180deg,#fff7ec,#fff); color:var(--ink); line-height:1.42; }
-body.locked header, body.locked main, body.locked nav.bottom, body.locked footer, body.locked .help-fab { display:none; }
-a { color:var(--teal2); font-weight:850; text-decoration:none; }
-img, video { max-width:100%; display:block; }
-h1,h2,h3 { letter-spacing:-.03em; }
-h1 { font-size:clamp(3rem,13vw,6.6rem); line-height:.88; margin:10px 0 12px; text-shadow:0 5px 30px rgba(0,0,0,.42); }
-h2 { font-size:clamp(1.8rem,6vw,2.7rem); margin:0 0 8px; }
-h3 { font-size:1.18rem; margin:18px 0 8px; }
-p { margin:8px 0; }
-.small { font-size:.9rem; color:var(--muted); }
-.hero {
-  min-height:100svh; color:#fff; display:flex; flex-direction:column; justify-content:flex-end;
-  padding:24px 18px 112px; background:
-    linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.12) 35%,rgba(14,24,24,.78)),
-    url("assets/hero.jpg") center/cover no-repeat;
-}
-.hero-inner { width:min(980px,100%); margin:0 auto; }
-.kicker { text-transform:uppercase; letter-spacing:.12em; font-weight:950; font-size:.76rem; opacity:.92; }
-.hero p { font-size:1.08rem; max-width:620px; color:rgba(255,255,255,.94); }
-.btn {
-  display:inline-flex; align-items:center; justify-content:center; gap:8px; border:0; border-radius:999px;
-  padding:13px 18px; font-weight:950; background:#fff; color:var(--ink);
-  box-shadow:0 12px 34px rgba(0,0,0,.22); cursor:pointer; min-height:46px;
-}
-.btn.secondary { background:rgba(255,255,255,.15); color:#fff; border:1px solid rgba(255,255,255,.36); backdrop-filter:blur(12px); }
-.hero-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
-.gate {
-  position:fixed; inset:0; z-index:9999; color:#fff; display:flex; align-items:center; justify-content:center; padding:20px;
-  background:linear-gradient(180deg,rgba(0,0,0,.28),rgba(0,0,0,.76)),url("assets/hero.jpg") center/cover no-repeat;
-}
-.gate-card {
-  width:min(430px,100%); padding:24px; border-radius:30px; background:rgba(255,255,255,.15);
-  border:1px solid rgba(255,255,255,.3); backdrop-filter:blur(18px); box-shadow:0 30px 90px rgba(0,0,0,.35);
-}
-.gate h2 { font-size:2.1rem; margin:0 0 8px; }
-.gate input { width:100%; border:1px solid rgba(255,255,255,.35); background:rgba(255,255,255,.95); color:var(--ink); border-radius:17px; padding:14px 16px; margin:10px 0 12px; font-size:1.05rem; }
-.error { min-height:22px; color:#ffe3dc; font-weight:900; }
-main { width:min(980px,100%); margin:0 auto; padding:20px 14px 104px; }
-section { scroll-margin-top:16px; }
-.page { background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:18px; margin:18px 0 28px; box-shadow:var(--shadow); }
-.sub { color:var(--muted); font-weight:700; }
-.nav-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin-top:18px; }
-.nav-card { min-height:116px; border:1px solid var(--line); border-radius:24px; padding:16px; background:linear-gradient(180deg,#fff,var(--paper)); box-shadow:0 10px 28px rgba(29,32,31,.08); color:var(--ink); display:flex; flex-direction:column; justify-content:space-between; }
-.nav-card strong { font-size:1.08rem; display:block; }
-.nav-card span { color:var(--muted); font-size:.9rem; font-weight:700; }
-details { background:#fff; border:1px solid var(--line); border-radius:20px; margin:10px 0; overflow:hidden; }
-summary { list-style:none; cursor:pointer; padding:15px 16px; font-weight:950; display:flex; justify-content:space-between; gap:10px; }
-summary::-webkit-details-marker { display:none; }
-summary:after { content:"+"; color:var(--gold); font-size:1.25rem; }
-details[open] summary { background:var(--paper); border-bottom:1px solid var(--line); }
-details[open] summary:after { content:"–"; }
-.inside { padding:14px 16px; }
-.mini-nav { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 16px; }
-.chip { border:1px solid var(--line); background:var(--paper); border-radius:999px; padding:9px 11px; color:var(--ink); font-weight:900; font-size:.9rem; }
-.card { border:1px solid var(--line); border-radius:20px; background:#fff; padding:14px; margin:10px 0; }
-.tip,.warn { border-radius:18px; padding:14px; margin:12px 0; border:1px solid var(--line); }
-.tip { background:#eef8f5; border-left:5px solid var(--teal); }
-.warn { background:#fff1db; border-left:5px solid var(--gold); }
-.photo-card { margin:12px 0; border-radius:22px; overflow:hidden; border:1px solid var(--line); background:#fff; box-shadow:0 12px 32px rgba(26,32,30,.10); }
-.photo-card img { width:100%; height:auto; }
-.caption { padding:10px 12px; color:var(--muted); font-weight:800; font-size:.92rem; }
-.placeholder { border:2px dashed #decbb5; background:#fffaf4; color:#7d6c58; border-radius:18px; padding:14px; margin:10px 0; font-weight:850; }
-ul { padding-left:1.25rem; margin:8px 0; }
-li { margin:6px 0; }
-.check { list-style:none; padding:0; }
-.check li { border-bottom:1px solid var(--line); padding:9px 0; }
-.check li:before { content:"✓ "; font-weight:950; color:var(--teal); }
-.info-row { display:grid; grid-template-columns:120px 1fr; gap:8px 12px; }
-.info-row div:nth-child(odd) { font-weight:950; color:var(--muted); }
-.map-btns { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
-.map-btns a { border:1px solid var(--line); background:var(--paper); border-radius:999px; padding:9px 12px; color:var(--ink); font-weight:900; }
-.search { width:100%; padding:14px 16px; border-radius:999px; border:1px solid var(--line); margin:12px 0 4px; outline:none; }
-.hidden { display:none!important; }
-.video-wrap { border-radius:22px; overflow:hidden; border:1px solid var(--line); margin:12px 0; background:#000; }
-.video-wrap video { width:100%; max-height:70svh; }
-.video-card { margin:14px 0 18px; border:1px solid var(--line); border-radius:24px; overflow:hidden; background:#0e1716; box-shadow:0 16px 38px rgba(26,32,30,.16); }
-.video-card video { width:100%; max-height:72svh; background:#000; }
-.video-label { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 14px; background:#fff; }
-.video-label strong { font-size:1rem; }
-.video-label span { color:var(--muted); font-size:.82rem; font-weight:850; white-space:nowrap; }
-.arrival-note { display:grid; gap:10px; margin:12px 0 16px; }
-.arrival-note .card { margin:0; }
-.category-title { margin:26px 0 8px; font-size:1.35rem; }
-
-.bottom { position:fixed; bottom:0; left:0; right:0; z-index:50; background:rgba(255,250,243,.96); border-top:1px solid var(--line); backdrop-filter:blur(18px); display:grid; grid-template-columns:repeat(6,1fr); box-shadow:0 -8px 28px rgba(29,32,31,.1); }
-.bottom a { padding:9px 3px 11px; text-align:center; color:var(--ink); font-size:.72rem; font-weight:900; }
-.bottom b { display:block; font-size:1.13rem; line-height:1; }
-.help-fab { position:fixed; right:14px; bottom:80px; z-index:60; border:0; background:var(--teal2); color:white; border-radius:999px; box-shadow:0 16px 45px rgba(31,87,86,.35); padding:12px 14px; font-weight:950; }
-.help-backdrop { position:fixed; inset:0; z-index:58; background:rgba(23,33,31,.22); opacity:0; pointer-events:none; transition:opacity .18s ease; }
-.help-backdrop.open { opacity:1; pointer-events:auto; }
-.help-panel { position:fixed; left:10px; right:10px; bottom:10px; width:min(560px,calc(100% - 20px)); margin:0 auto; background:white; border:1px solid var(--line); border-radius:28px; box-shadow:0 22px 70px rgba(26,32,30,.26); padding:16px; z-index:61; transform:translateY(calc(100% + 24px)); opacity:0; pointer-events:none; transition:transform .22s ease, opacity .18s ease; }
-.help-panel.open { transform:translateY(0); opacity:1; pointer-events:auto; }
-.help-actions { display:grid; gap:8px; margin-top:10px; }
-.help-actions a { display:flex; align-items:center; gap:10px; border:1px solid var(--line); background:var(--paper); border-radius:16px; padding:12px 13px; color:var(--ink); font-weight:950; }
-.badge { display:inline-flex; align-items:center; width:max-content; border-radius:999px; background:var(--paper); border:1px solid var(--line); color:var(--muted); font-size:.72rem; font-weight:950; padding:5px 8px; margin-bottom:8px; }
-footer { text-align:center; color:var(--muted); font-size:.85rem; padding:32px 14px 110px; }
-
-.owner-only { display:none; }
-body.family .owner-only { display:block; }
-.media-placeholder { border:1px solid var(--line); border-radius:22px; background:linear-gradient(180deg,#fffaf4,#fff); padding:18px; margin:12px 0; box-shadow:0 12px 30px rgba(26,32,30,.08); }
-.media-placeholder .icon { font-size:2rem; line-height:1; margin-bottom:8px; }
-.media-placeholder strong { display:block; font-size:1.05rem; margin-bottom:4px; }
-.quick-steps { display:grid; gap:10px; margin:12px 0; }
-.step { display:grid; grid-template-columns:34px 1fr; gap:10px; align-items:start; border:1px solid var(--line); background:var(--paper); border-radius:18px; padding:12px; }
-.step b { width:34px; height:34px; display:inline-flex; align-items:center; justify-content:center; border-radius:999px; background:var(--teal2); color:#fff; }
-
-@media(min-width:760px) {
-  .page { padding:24px; }
-  .nav-grid { grid-template-columns:repeat(3,1fr); }
-  .bottom { left:50%; transform:translateX(-50%); max-width:760px; border-radius:24px 24px 0 0; overflow:hidden; }
-  .bottom a { font-size:.8rem; padding:11px 4px 13px; }
-  .two { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-}
+:root{--ink:#17211f;--muted:#68736f;--paper:#fff8ef;--card:#fff;--line:rgba(46,38,30,.13);--teal:#1f625f;--teal2:#174b49;--gold:#c98a3c;--shadow:0 18px 55px rgba(25,35,32,.12);--radius:26px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(180deg,#fff7ec,#fff);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.42}body.locked .app,body.locked .bottom{display:none}a{text-decoration:none;color:inherit}button,input{font:inherit}img{display:block;max-width:100%}.hidden{display:none!important}
+.gate{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:20px;color:#fff;background:linear-gradient(180deg,rgba(0,0,0,.22),rgba(0,0,0,.75)),url("assets/hero.jpg") center/cover}.gate-card{width:min(430px,100%);padding:25px;border:1px solid rgba(255,255,255,.3);border-radius:30px;background:rgba(255,255,255,.14);backdrop-filter:blur(18px);box-shadow:0 30px 90px rgba(0,0,0,.35)}.gate h1{margin:5px 0 8px;font-size:2.35rem}.gate p{margin:6px 0 13px}.gate input{width:100%;border:0;border-radius:17px;padding:15px;margin:8px 0 10px}.btn{border:0;border-radius:999px;padding:13px 18px;font-weight:900;cursor:pointer;background:#fff;color:var(--ink)}.error{min-height:22px;color:#ffe0d9;font-weight:800}
+.app{min-height:100vh;padding-bottom:92px}.hero{min-height:70svh;display:flex;align-items:flex-end;color:#fff;padding:24px 18px 88px;background:linear-gradient(180deg,rgba(0,0,0,.13),rgba(0,0,0,.72)),url("assets/hero.jpg") center/cover}.hero-inner{width:min(980px,100%);margin:auto}.kicker{text-transform:uppercase;letter-spacing:.13em;font-weight:900;font-size:.76rem}.hero h1{font-size:clamp(3rem,13vw,6.5rem);line-height:.9;margin:10px 0 12px;text-shadow:0 4px 28px rgba(0,0,0,.35)}.hero p{max-width:600px;font-size:1.12rem;color:rgba(255,255,255,.94)}
+main{width:min(980px,100%);margin:auto;padding:18px 14px 100px}.view{display:none}.view.active{display:block}.page-head{display:flex;align-items:center;gap:10px;margin:4px 0 16px}.back{border:1px solid var(--line);background:#fff;border-radius:999px;padding:10px 13px;font-weight:900;cursor:pointer}.page-head h2{font-size:clamp(1.9rem,7vw,2.8rem);margin:0;letter-spacing:-.04em}.sub{color:var(--muted);font-weight:700;margin:0 0 16px}.section-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);margin:0 0 16px}.section-card h3{font-size:1.25rem;margin:0 0 8px;letter-spacing:-.02em}.section-card p{margin:7px 0}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.home-grid{margin-top:-48px;position:relative;z-index:3}.tile{min-height:128px;background:linear-gradient(180deg,#fff,#fffaf4);border:1px solid var(--line);border-radius:24px;padding:17px;box-shadow:0 12px 35px rgba(25,35,32,.1);display:flex;flex-direction:column;justify-content:space-between;cursor:pointer}.tile .icon{font-size:1.8rem}.tile strong{font-size:1.08rem}.tile span{color:var(--muted);font-size:.88rem;font-weight:700}.topic-grid .tile{min-height:112px}.wide{grid-column:1/-1}.quick{display:grid;gap:9px}.step{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start;padding:12px;border-radius:17px;background:var(--paper);border:1px solid var(--line)}.step b{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--teal);color:#fff}.tip{padding:14px;border-radius:18px;background:#eef8f5;border-left:5px solid var(--teal);margin:12px 0}.warn{padding:14px;border-radius:18px;background:#fff1db;border-left:5px solid var(--gold);margin:12px 0}.check{list-style:none;padding:0;margin:8px 0}.check li{padding:9px 0;border-bottom:1px solid var(--line)}.check li:before{content:"✓ ";color:var(--teal);font-weight:900}.photo{overflow:hidden;border-radius:22px;border:1px solid var(--line);margin:12px 0;background:#fff}.photo img{width:100%}.caption{padding:9px 12px;color:var(--muted);font-weight:750;font-size:.9rem}.two{display:grid;gap:12px}.play-card{width:100%;display:flex;align-items:center;gap:13px;border:1px solid var(--line);border-radius:19px;background:linear-gradient(180deg,#fff,#fffaf4);padding:14px;cursor:pointer;text-align:left;margin:10px 0;box-shadow:0 8px 24px rgba(25,35,32,.07)}.play-icon{width:44px;height:44px;flex:0 0 44px;border-radius:50%;display:grid;place-items:center;background:var(--teal);color:#fff;font-size:1.1rem}.play-card strong{display:block}.play-card small{display:block;color:var(--muted);margin-top:2px}.info{display:grid;grid-template-columns:115px 1fr;gap:8px 12px}.info div:nth-child(odd){color:var(--muted);font-weight:900}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:11px}.pill{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;background:var(--paper);padding:10px 12px;font-weight:900;color:var(--ink)}.badge{display:inline-flex;border:1px solid var(--line);background:var(--paper);color:var(--muted);border-radius:999px;padding:5px 8px;font-size:.72rem;font-weight:900;margin-bottom:7px}.restaurant h3{margin:2px 0 6px}.search{width:100%;border:1px solid var(--line);border-radius:999px;padding:14px 16px;margin:0 0 14px;background:#fff}
+.bottom{position:fixed;z-index:100;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(5,1fr);background:rgba(255,250,243,.96);border-top:1px solid var(--line);backdrop-filter:blur(16px);box-shadow:0 -8px 28px rgba(25,35,32,.09);padding-bottom:env(safe-area-inset-bottom)}.bottom button{border:0;background:transparent;padding:9px 3px 10px;font-size:.7rem;font-weight:900;color:var(--ink);cursor:pointer}.bottom b{display:block;font-size:1.15rem}.bottom button.active{color:var(--teal)}
+.modal{position:fixed;inset:0;z-index:500;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(7,13,12,.82)}.modal.open{display:flex}.modal-card{width:min(700px,100%);background:#111;border-radius:24px;overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.5)}.modal-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;color:#fff}.modal-head h3{margin:0;font-size:1rem}.close{border:0;background:rgba(255,255,255,.14);color:#fff;border-radius:999px;padding:8px 11px;cursor:pointer}.modal video{width:100%;max-height:78svh;background:#000}
+footer{text-align:center;color:var(--muted);padding:28px 14px 108px;font-size:.88rem}.owner-only{display:none}body.family .owner-only{display:block}
+@media(min-width:760px){.grid{grid-template-columns:repeat(3,1fr)}.two{grid-template-columns:1fr 1fr}.bottom{left:50%;transform:translateX(-50%);max-width:760px;border-radius:24px 24px 0 0}.section-card{padding:24px}.home-grid{margin-top:-58px}}
 </style>
 </head>
 <body class="locked">
-<div class="gate" id="gate">
-  <div class="gate-card">
-    <div class="kicker">Our Little Corner of Menton</div>
-    <h2>Welcome Home</h2>
-    <p>Please enter the password you received to open the Menton guide.</p>
-    <input id="pw" type="password" placeholder="Password" autocomplete="current-password">
-    <button class="btn" id="unlock">Open Guide</button>
-    <div class="error" id="err"></div>
-    <p class="small" style="color:rgba(255,255,255,.86)">For family and invited guests only.</p>
-  </div>
-</div>
-
-<header class="hero" id="top">
-  <div class="hero-inner">
-    <div class="kicker">65 Porte de France • Garavan • Menton</div>
-    <h1>Welcome Home</h1>
-    <p>A private guide to our little corner of the Riviera.</p>
-    <div class="hero-actions">
-      <a class="btn" href="#arrive">✈️ First Time Here? Start Here</a>
-      <a class="btn secondary" href="#find">📍 Find It</a>
-    </div>
-  </div>
-</header>
-
+<div class="gate" id="gate"><div class="gate-card"><div class="kicker">Private Guide</div><h1>Notre Coin de Menton</h1><p>Please enter the password you received.</p><input id="pw" type="password" placeholder="Password"><button class="btn" id="unlock">Open Guide</button><div class="error" id="err"></div></div></div>
+<div class="app">
+<header class="hero" id="hero"><div class="hero-inner"><div class="kicker">65 Porte de France • Garavan</div><h1>Notre Coin de Menton</h1><p>Your guide to our little corner of the Riviera.</p></div></header>
 <main>
-<section class="page" id="start">
-  <h2>✈️ First Time Here? Start Here</h2>
-  <p class="sub">Tap what you need. No scrolling through a manual.</p>
-  <input class="search" id="search" type="search" placeholder="Search: Wi‑Fi, garage, coffee, beach...">
-  <div class="nav-grid">
-    <a class="nav-card" href="#arrive"><strong>⭐ Arrive</strong><span>Building, elevator, unlocking, Wi‑Fi</span></a>
-    <a class="nav-card" href="#home"><strong>🏠 The Home</strong><span>Garage, terraces, AC, bedrooms</span></a>
-    <a class="nav-card" href="#getting"><strong>🚆 Getting Around</strong><span>Trains, buses, bikes, walking</span></a>
-    <a class="nav-card" href="#favorites"><strong>🍋 Our Favorites</strong><span>Food, markets, beach clubs</span></a>
-    <a class="nav-card" href="#find"><strong>📍 Find It</strong><span>Where things are stored</span></a>
-    <a class="nav-card" href="#checkout"><strong>🚪 Leave / Checkout</strong><span>Before you go</span></a>
+<section class="view active" id="view-home">
+  <div class="grid home-grid">
+    <button class="tile" data-go="apartment"><span class="icon">🏠</span><strong>Apartment</strong><span>Arrival, door, garage, terraces and everyday living</span></button>
+    <button class="tile" data-go="explore"><span class="icon">🍋</span><strong>Explore Menton</strong><span>What we wish we knew, beaches and easy days out</span></button>
+    <button class="tile" data-go="favorites"><span class="icon">❤️</span><strong>Favorites</strong><span>Places we love and trusted local recommendations</span></button>
+    <button class="tile" data-go="markets"><span class="icon">🛒</span><strong>Markets</strong><span>Menton and Ventimiglia</span></button>
+    <button class="tile" data-go="around"><span class="icon">🚆</span><strong>Getting Around</strong><span>Trains, buses, bikes and walking</span></button>
+    <button class="tile" data-go="help"><span class="icon">🆘</span><strong>Need Help</strong><span>Emanuela, medical care and directions home</span></button>
   </div>
 </section>
 
-<section class="page" id="arrive">
-  <h2>⭐ Arrive</h2>
-  <div class="mini-nav">
-    <a class="chip" href="#address">Address</a><a class="chip" href="#elevator">Elevator</a><a class="chip" href="#keys">Unlocking</a><a class="chip" href="#wifi">Wi‑Fi</a><a class="chip" href="#awnings">Awnings</a><a class="chip" href="#first-hour">First Hour</a><a class="chip" href="#medical">Medical</a>
-  </div>
+<section class="view" id="view-apartment"><div class="page-head"><button class="back" data-go="home">← Home</button><h2>🏠 Apartment</h2></div><p class="sub">Tap what you need. Every card answers one question.</p><div class="grid topic-grid">
+<button class="tile" data-go="arrival"><span class="icon">✈️</span><strong>Before You Travel</strong><span>Contact Emanuela and arrange keys</span></button>
+<button class="tile" data-go="getting-here"><span class="icon">🚆</span><strong>Getting Here</strong><span>Which Menton station to use</span></button>
+<button class="tile" data-go="building"><span class="icon">🏢</span><strong>Building & Elevator</strong><span>Find Bâtiment 2 and reach the 6th floor</span></button>
+<button class="tile" data-go="door"><span class="icon">🔑</span><strong>Front Door</strong><span>Enter, leave and secure at night</span></button>
+<button class="tile" data-go="wifi"><span class="icon">📶</span><strong>Wi‑Fi</strong><span>Apartment and rooftop networks</span></button>
+<button class="tile" data-go="garage"><span class="icon">🚗</span><strong>Garage</strong><span>Open, close and find our garage</span></button>
+<button class="tile" data-go="terraces"><span class="icon">🌿</span><strong>Terraces</strong><span>Apartment and rooftop awnings</span></button>
+<button class="tile" data-go="rooftop"><span class="icon">🌅</span><strong>Rooftop</strong><span>What is there and where to find it</span></button>
+<button class="tile" data-go="coffee"><span class="icon">☕</span><strong>Coffee</strong><span>Krups basics and cleaning help</span></button>
+<button class="tile" data-go="laundry"><span class="icon">🧺</span><strong>Laundry</strong><span>Wash settings and drying rack</span></button>
+<button class="tile" data-go="living"><span class="icon">❄️</span><strong>AC & Bedrooms</strong><span>Cooling, beds and storage</span></button>
+<button class="tile" data-go="find"><span class="icon">📍</span><strong>Find It</strong><span>Where supplies and equipment are stored</span></button>
+<button class="tile wide" data-go="checkout"><span class="icon">🚪</span><strong>Checkout</strong><span>Quick list before you leave</span></button>
+</div></section>
 
-  <div class="arrival-note">
-    <div class="card">
-      <span class="badge">Before you travel</span>
-      <h3>Connect with Emanuela</h3>
-      <p>Please contact Emanuela at least <strong>one week before arrival</strong> to confirm your arrival time, arrange key pickup or a meeting at the apartment, and tell her how many guests, beds, and towel sets are needed.</p>
-    </div>
-    <div class="card">
-      <span class="badge">Arriving by train</span>
-      <p><strong>Before 7:00 p.m.:</strong> you will typically meet Emanuela at the apartment, so get off at <strong>Menton Garavan</strong>, a short walk away.</p>
-      <p><strong>After 7:00 p.m.:</strong> you will typically use the downtown key pickup near <strong>Menton</strong> station, then walk, take the bus, or use Uber to reach the apartment.</p>
-      <p class="small">Confirm the exact plan with Emanuela before travel, as arrangements may vary.</p>
-    </div>
-  </div>
+<section class="view" id="view-arrival"><div class="page-head"><button class="back" data-go="apartment">← Apartment</button><h2>✈️ Before You Travel</h2></div><div class="section-card"><p>Please contact <strong>Emanuela at least one week before arrival</strong>.</p><ul class="check"><li>Confirm your arrival date and approximate time.</li><li>Arrange key pickup or someone to meet you with the keys.</li><li>Tell her how many guests are staying.</li><li>Confirm how many beds and towel sets are needed.</li><li>Ask any last-minute questions.</li></ul><div class="actions"><a class="pill" href="tel:+393398935689">📞 Call Emanuela</a><a class="pill" href="https://wa.me/393398935689" target="_blank">💬 WhatsApp</a></div></div></section>
+<section class="view" id="view-getting-here"><div class="page-head"><button class="back" data-go="apartment">← Apartment</button><h2>🚆 Getting Here</h2></div><div class="section-card"><h3>Before 7:00 p.m.</h3><p>You will typically meet Emanuela at the apartment, so get off at <strong>Menton Garavan</strong>. It is a short walk away.</p></div><div class="section-card"><h3>After 7:00 p.m.</h3><p>You will typically use the downtown key pickup near <strong>Menton</strong> station, then walk, take the bus, or use Uber to reach the apartment.</p></div><div class="tip">Confirm your exact arrangement with Emanuela at least one week before your trip.</div></section>
+<section class="view" id="view-building"><div class="page-head"><button class="back" data-go="apartment">← Apartment</button><h2>🏢 Building & Elevator</h2></div><div class="section-card"><p><strong>65 Porte de France<br>Bâtiment 2<br>06500 Menton</strong></p><div class="actions"><a class="pill" href="https://maps.app.goo.gl/7fVJLWtbBbVjhtD87" target="_blank">📍 Directions Home</a></div><div class="photo"><img src="assets/building-two-door.jpg" alt="Bâtiment 2 entrance"><div class="caption">Use the middle entrance: Bâtiment 2.</div></div><div class="quick"><div class="step"><b>1</b><div>At the elevator keypad, enter <strong>246A</strong>.</div></div><div class="step"><b>2</b><div>Press <strong>6</strong> for the apartment, <strong>RC</strong> for the lobby, or <strong>SS</strong> for the garage.</div></div></div><div class="two"><div class="photo"><img src="assets/elevator-panel.jpg" alt="Elevator keypad"><div class="caption">Elevator keypad.</div></div><div class="photo"><img src="assets/elevator-stairwell.jpg" alt="Elevator and stairwell"><div class="caption">Elevator and adjacent stairwell.</div></div></div></div></section>
+<section class="view" id="view-door"><div class="page-head"><button class="back" data-go="apartment">← Apartment</button><h2>🔑 Front Door</h2></div><div class="section-card"><button class="play-card" data-video="assets/entering-apartment.mp4" data-title="Entering the Apartment"><span class="play-icon">▶</span><span><strong>Entering the Apartment</strong><small>Tap to watch</small></span></button><h3>Using your keypad code</h3><div class="quick"><div class="step"><b>1</b><div>Enter your personal code.</div></div><div class="step"><b>2</b><div>Press the <strong>Yale</strong> button.</div></div><div class="step"><b>3</b><div><strong>Be patient.</strong> It may take <strong>10–15 seconds</strong> before the lock connects and begins unlocking.</div></div><div class="step"><b>4</b><div>Once it starts, the lock turns <strong>five times</strong>. When it completely stops, press the handle down.</div></div></div><div class="tip"><strong>Nothing happening immediately is normal.</strong> Do not keep pressing buttons.</div></div><div class="section-card"><button class="play-card" data-video="assets/leaving-apartment.mp4" data-title="Leaving the Apartment"><span class="play-icon">▶</span><span><strong>Leaving the Apartment</strong><small>Tap to watch</small></span></button><ul class="check"><li><strong>Pull the door firmly closed.</strong></li><li>Press the Yale button.</li><li>Wait for the full locking cycle.</li><li>Check the handle before walking away.</li></ul></div><div class="section-card"><button class="play-card" data-video="assets/secure-at-night.mp4" data-title="Securing the Door at Night"><span class="play-icon">▶</span><span><strong>Securing the Door at Night</strong><small>Tap to watch</small></span></button><p>Slide the eye-level deadbolt fully to the <strong>left</strong>. Slide it back to the right before leaving.</p></div><div class="section-card"><h3>Backup key</h3><p><strong>Unlock:</strong> turn the key <strong>counterclockwise</strong> through more than four complete turns, then press the handle down.</p><p><strong>Lock:</strong> close the door and turn the key <strong>clockwise</strong> through more than four complete turns.</p><p class="sub">That many turns is normal for a European multipoint lock.</p></div></section>
+<section class="view" id="view-wifi"><div class="page-head"><button class="back" data-go="apartment">← Apartment</button><h2>📶 Wi‑Fi</h2></div><div class="section-card"><div class="info"><div>Apartment</div><div><strong>Livebox2a20</strong></div><div>Password</div><div><strong>2LxxwSp6kt3vve5C5D</strong></div><div>Rooftop</div><div><strong>Menton 2-6</strong></div><div>Password</div><div><strong>Ment0n12345</strong></div></div></div></section>
+<section class="view" id="view-garage"><div class="page-head"><button class="back" data-go="apartment">← Apartment</button><h2>🚗 Garage</h2></div><div class="section-card"><button class="play-card" data-video="assets/open-garage.mp4" data-title="Opening the Garage"><span class="play-icon">▶</span><span><strong>Opening the Garage</strong><small>Tap to watch</small></span></button><button class="play-card" data-video="assets/close-garage.mp4" data-title="Closing the Garage"><span class="play-icon">▶</span><span><strong>Closing the Garage</strong><small>Tap to watch</small></span></button><p>Take the elevator to <strong>SS</strong>. Our private garage is directly ahead and slightly left.</p><p>From outside, walk down the ramp and use the <strong>lobby key</strong> in the white post to open the main gate.</p><div class="two"><div class="photo"><img src="assets/building-right-garage-bus.jpg" alt="Garage ramp"><div class="caption">Garage ramp on the right side of the building.</div></div><div class="photo"><img src="assets/garage-ramp-post.jpg" alt="White garage post"><div class="caption">Use the lobby key in this white post.</div></div></div><div class="photo"><img src="assets/garage-recycling-door.jpg" alt="Garage level"><div class="caption">Our garage is at the end; trash and recycling are nearby.</div></div></div></section>
+<section class="view" id="view-terraces"><div class="page-head"><button class="back" data-go="apartment">← Apartment</button><h2>🌿 Terraces</h2></div><div class="section-card"><h3>Apartment terrace</h3><button class="play-card" data-video="assets/downstairs-terrace-remote.mp4" data-title="Apartment Terrace Remote"><span class="play-icon">▶</span><span><strong>Using the Apartment Terrace Remote</strong><small>Tap to watch</small></span></button></div><div class="section-card"><h3>Rooftop terrace</h3><button class="play-card" data-video="assets/upper-terrace-remote.mp4" data-title="Rooftop Terrace Remote"><span class="play-icon">▶</span><span><strong>Using the Rooftop Terrace Remote</strong><small>Tap to watch</small></span></button><p>The rooftop remote is in the drawer beside the outdoor sink. Return it there after use.</p></div><div class="warn"><strong>Always retract both awnings whenever you leave.</strong> Riviera winds can arrive suddenly.</div></section>
+<section class="view" id="view-rooftop"><div class="page-head"><button class="back" data-go="apartment">← Apartment</button><h2>🌅 Rooftop</h2></div><div class="section-card"><div class="photo"><img src="assets/rooftop-dining.jpg" alt="Rooftop terrace"><div class="caption">Our favorite time here is about an hour before sunset.</div></div><p>Exit the apartment, turn right before the elevator, and go up one flight. Use the rooftop key.</p><ul class="check"><li>Plates, glasses, napkins and serving items are in the outdoor kitchen.</li><li>Bluetooth speaker, TRX, resistance bands and yoga mats are in storage.</li><li>Outdoor shower is available for cooling off or rinsing sand.</li><li>Lock both the rooftop door and stairwell door when leaving.</li></ul><div class="photo"><img src="assets/rooftop-speaker-trx.jpg" alt="Rooftop equipment"><div class="caption">Speaker and exercise equipment.</div></div></div></section>
+<section class="view" id="view-coffee"><div class="page-head"><button class="back" data-go="apartment">← Apartment</button><h2>☕ Coffee</h2></div><div class="section-card"><p>The Krups machine uses whole beans or ground coffee.</p><div class="actions"><a class="pill" href="https://youtu.be/1GVhL0dfIG4?si=UF39qWq2HOTTHjjN" target="_blank">▶ Coffee basics</a><a class="pill" href="https://youtu.be/lQUMR8pxMWI?si=2SJq6hfloFb0f0Eu" target="_blank">🧼 Cleaning & descaling</a></div><div class="photo"><img src="assets/coffee-qr.jpg" alt="Coffee QR code"><div class="caption">The QR code is on the back of the water reservoir.</div></div><div class="tip">If the red <strong>CALC</strong> light appears, you still have roughly 30 cups before descaling is necessary.</div></div></section>
+<section class="view" id="view-laundry"><div class="page-head"><button class="back" data-go="apartment">← Apartment</button><h2>🧺 Laundry</h2></div><div class="section-card"><button class="play-card" data-video="assets/laundry-video.mp4" data-title="Using the Washing Machine"><span class="play-icon">▶</span><span><strong>Using the Washing Machine</strong><small>Tap to watch</small></span></button><ul class="check"><li>Use <strong>30°C</strong> for most loads.</li><li>Detergent is beneath the oven.</li><li>Use about two tablespoons.</li><li>The machine washes but does not dry.</li><li>Drying rack is on the apartment terrace outside the kitchen.</li></ul></div></section>
+<section class="view" id="view-living"><div class="page-head"><button class="back" data-go="apartment">← Apartment</button><h2>❄️ AC & Bedrooms</h2></div><div class="section-card"><h3>Air conditioning</h3><ul class="check"><li>Three units: one in each bedroom and one in the living area.</li><li>The living-area unit works best with bedroom doors closed.</li><li>Turn off units in rooms you are not using.</li><li>Close shutters and terrace doors to keep the apartment cool.</li></ul></div><div class="section-card"><h3>Sleeping</h3><p><strong>Primary bedroom:</strong> queen bed, full closet and private balcony.</p><p><strong>Sleeping room:</strong> trundle bed with second mattress underneath; balcony, no closet.</p><p><strong>Living room:</strong> sleeper sofa.</p></div></section>
+<section class="view" id="view-find"><div class="page-head"><button class="back" data-go="apartment">← Apartment</button><h2>📍 Find It</h2></div><input class="search" id="findSearch" placeholder="Search: flashlight, remote, detergent..."><div class="grid" id="findGrid"><div class="section-card"><h3>☕ Coffee</h3><p>Supplies: top shelf above machine. QR: back of reservoir. Stovetop espresso maker: upper-left cabinet.</p></div><div class="section-card"><h3>🍽 Kitchen</h3><p>Wine opener: kitchen drawer. Large aluminum bowls: kitchen cabinet. Rooftop plates and napkins: outdoor kitchen.</p></div><div class="section-card"><h3>🧺 Laundry</h3><p>Detergent: beneath oven. Drying rack: apartment terrace.</p></div><div class="section-card"><h3>🛒 Shopping</h3><p>Rolling grocery cart: coat closet near front door.</p></div><div class="section-card"><h3>🌿 Rooftop</h3><p>Remote: drawer by sink. Speaker, yoga mats, TRX and bands: storage cabinet.</p></div><div class="section-card"><h3>🏖 Beach</h3><p>Beach chairs and umbrellas: garage.</p></div><div class="section-card"><h3>🧹 Cleaning</h3><p>Vacuum: right of oven. Swiffer: hall closet.</p></div><div class="section-card"><h3>🔦 Safety</h3><p>Flashlight: top shelf of coat closet.</p></div></div></section>
+<section class="view" id="view-checkout"><div class="page-head"><button class="back" data-go="apartment">← Apartment</button><h2>🚪 Checkout</h2></div><div class="section-card"><ul class="check"><li>Turn off air conditioning.</li><li>Close and lock terrace doors.</li><li>Retract both awnings.</li><li>Return cushions and covers.</li><li>Put away anything that could blow away.</li><li>Lock rooftop and stairwell doors.</li><li>Take out garbage and recycling if needed.</li><li>Check for chargers, passports and personal items.</li><li>Leave keys as arranged.</li></ul><div class="tip">Thank you for taking such good care of our home.</div></div></section>
 
-  <details id="address" open><summary>📍 Address & Local Contact</summary>
-    <div class="inside">
-      <p><strong>65 Porte de France<br>Bâtiment 2<br>06500 Menton, France</strong></p>
-      <p>Look for the middle entrance, <strong>Bâtiment 2</strong>.</p>
-      <div class="map-btns"><a href="https://maps.app.goo.gl/7fVJLWtbBbVjhtD87" target="_blank">📍 Open home in Google Maps</a></div>
-      <div class="photo-card"><img src="assets/building-two-door.jpg" alt="Building entrance number 2"><div class="caption">Our entrance: Bâtiment 2.</div></div>
-      <p><strong>Emanuela Ménage</strong><br>Cleaning • Emergencies • Questions<br><strong>+39 339 893 5689</strong></p>
-      <div class="tip owner-only"><strong>Family & Friends:</strong> Jack & Donna are your hosts. Their direct contact information is provided separately to family guests; for anything local or urgent, Emanuela is still the fastest contact.</div>
-      <div class="tip"><strong>Maintenance & Questions:</strong> If anything isn't working properly, or if you have any questions during your stay, please contact Emanuela. She'll help directly or arrange maintenance if needed.</div>
-    </div>
-  </details>
-
-  <details id="elevator" open><summary>🛗 Building & Elevator</summary>
-    <div class="inside">
-      <p>From the lobby, use the elevator keypad before selecting the floor.</p>
-      <div class="quick-steps">
-        <div class="step"><b>1</b><div>Enter <strong>246A</strong>.</div></div>
-        <div class="step"><b>2</b><div>Press <strong>RC</strong> for lobby, <strong>6</strong> for the apartment, or <strong>SS</strong> for the garage.</div></div>
-      </div>
-      <div class="two">
-        <div class="photo-card"><img src="assets/elevator-panel.jpg" alt="Elevator keypad"><div class="caption">Elevator keypad.</div></div>
-        <div class="photo-card"><img src="assets/elevator-stairwell.jpg" alt="Elevator and stairwell door"><div class="caption">Elevator and adjacent stairwell door.</div></div>
-      </div>
-    </div>
-  </details>
-
-  <details id="keys" open><summary>🔑 Unlocking the Apartment</summary>
-    <div class="inside">
-      <div class="video-card"><video src="assets/entering-apartment.mp4" controls playsinline preload="metadata"></video><div class="video-label"><strong>▶ Entering the apartment</strong><span>Watch first</span></div></div>
-      <h3>Using Your Personal Keypad Code</h3>
-      <p>Each guest receives a private keypad code.</p>
-      <div class="quick-steps">
-        <div class="step"><b>1</b><div>Enter your personal code.</div></div>
-        <div class="step"><b>2</b><div>Press the <strong>Yale</strong> button.</div></div>
-        <div class="step"><b>3</b><div><strong>Be patient.</strong> It may take <strong>10–15 seconds</strong> before the lock connects and begins unlocking.</div></div>
-        <div class="step"><b>4</b><div>Once it starts, the lock will turn <strong>five times</strong>.</div></div>
-        <div class="step"><b>5</b><div>When it has completely stopped turning, press the handle down and open the door.</div></div>
-      </div>
-      <div class="tip"><strong>Nothing happening immediately?</strong> That short delay is completely normal.</div>
-
-      <h3>Using the Backup Key</h3>
-      <p>The key operates a European high-security multipoint lock. More than four complete turns is normal.</p>
-      <ul>
-        <li><strong>To unlock:</strong> insert the key, turn it <strong>counterclockwise</strong> through more than four complete turns until it stops, then press the handle down.</li>
-        <li><strong>To lock:</strong> close the door and turn the key <strong>clockwise</strong> through more than four complete turns until it stops.</li>
-      </ul>
-
-      <div class="video-card"><video src="assets/leaving-apartment.mp4" controls playsinline preload="metadata"></video><div class="video-label"><strong>▶ Leaving the apartment</strong><span>Pull firmly</span></div></div>
-      <h3>Leaving the Apartment</h3>
-      <ul class="check"><li>Pull the door firmly closed.</li><li>Press the <strong>Yale</strong> button.</li><li>Wait for the full locking cycle.</li><li>Check the handle before walking away.</li></ul>
-      <div class="warn"><strong>The Yale lock cannot engage unless the door is fully closed.</strong></div>
-
-      <div class="video-card"><video src="assets/secure-at-night.mp4" controls playsinline preload="metadata"></video><div class="video-label"><strong>▶ Securing the apartment at night</strong><span>From inside</span></div></div>
-      <h3>Securing From Inside</h3>
-      <p>Slide the eye-level deadbolt fully to the left at night. Slide it back to the right before leaving.</p>
-      <div class="tip"><strong>Trouble?</strong> Contact Emanuela.</div>
-
-      <h3>Other Keys</h3>
-      <p><strong>Lobby Key</strong> — building entrance, stairwell, and main garage gate.</p>
-      <p><strong>Garage Door Key</strong> — private garage.</p>
-      <p><strong>Rooftop Terrace Key</strong> — rooftop stairwell.</p>
-      <p><strong>Mailbox Key</strong></p>
-    </div>
-  </details>
-
-  <details id="wifi" open><summary>📶 Wi‑Fi</summary>
-    <div class="inside">
-      <div class="info-row">
-        <div>Apartment</div><div><strong>Livebox2a20</strong></div>
-        <div>Password</div><div><strong>2LxxwSp6kt3vve5C5D</strong></div>
-        <div>Rooftop</div><div><strong>Menton 2-6</strong></div>
-        <div>Password</div><div><strong>Ment0n12345</strong></div>
-      </div>
-    </div>
-  </details>
-
-  <details id="awnings"><summary>🌬 Awnings & Outdoor Furniture</summary>
-    <div class="inside">
-      <p>If the apartment seems buttoned up when you arrive, that is normal. Strong Riviera winds can arrive quickly.</p>
-      <ul class="check">
-        <li>Retract the awnings whenever you leave the apartment or rooftop.</li>
-        <li>Return cushions and covers if you used them.</li>
-        <li>Put away anything that could blow away.</li>
-      </ul>
-    </div>
-  </details>
-
-  <details id="first-hour"><summary>🌞 Your First Hour</summary>
-    <div class="inside">
-      <ul class="check"><li>Connect to Wi‑Fi.</li><li>Open the shutters.</li><li>Turn on AC if you'd like.</li><li>Drop your bags.</li><li>Walk to the sea.</li><li>Relax.</li></ul>
-      <div class="tip"><strong>Jack & Donna Tip:</strong> If you're hungry, head to <strong>Côtes de Menton</strong>, about a block away.</div>
-    </div>
-  </details>
-
-  <details><summary>🇫🇷 Bonjour</summary>
-    <div class="inside"><p>Always begin with <strong>Bonjour</strong> when entering a bakery, café, shop, pharmacy — or even boarding a bus.</p><p>When leaving: <strong>Merci</strong>, <strong>Au revoir</strong>, <strong>Bonne journée</strong>, or <strong>Bonne soirée</strong>.</p></div>
-  </details>
-
-  <details id="medical"><summary>🚑 Medical Care</summary>
-    <div class="inside">
-      <p><strong>Life-threatening emergency:</strong> call <strong>112</strong>.</p>
-      <p><strong>Find a doctor:</strong> use <a href="https://www.doctolib.fr" target="_blank">Doctolib</a>.</p>
-      <p><strong>Minor issue:</strong> start with the nearest pharmacy. French pharmacists are highly trained.</p>
-      <p><strong>Unsure?</strong> Contact Emanuela.</p>
-      <div class="map-btns"><a href="https://maps.app.goo.gl/ak6qqa1o4akoAbnb8" target="_blank">📍 Nearest pharmacy</a><a href="https://www.doctolib.fr" target="_blank">🩺 Open Doctolib</a></div>
-    </div>
-  </details>
-</section>
-
-<section class="page" id="home">
-  <h2>🏠 The Home</h2>
-  <div class="mini-nav"><a class="chip" href="#garage">Garage</a><a class="chip" href="#terrace">Terrace</a><a class="chip" href="#rooftop">Rooftop</a><a class="chip" href="#ac">AC</a><a class="chip" href="#beds">Bedrooms</a><a class="chip" href="#kitchen">Kitchen</a></div>
-
-  <details id="garage"><summary>🚗 Garage</summary>
-    <div class="inside">
-      <p>Take the elevator to <strong>SS</strong>. Our private garage is directly ahead and slightly left.</p>
-      <div class="video-card"><video src="assets/open-garage.mp4" controls playsinline preload="metadata"></video><div class="video-label"><strong>▶ Opening the main garage gate</strong><span>Outside access</span></div></div>
-      <p>Walk around the building to the right and down the ramp. Use the <strong>lobby key</strong> in the white post to open the main gate.</p>
-      <div class="video-card"><video src="assets/close-garage.mp4" controls playsinline preload="metadata"></video><div class="video-label"><strong>▶ Closing the garage</strong><span>Before leaving</span></div></div>
-      <p>Use the <strong>garage door key</strong> for the private garage.</p>
-      <div class="two">
-        <div class="photo-card"><img src="assets/building-right-garage-bus.jpg" alt="Right side of building with garage ramp and bus stop"><div class="caption">The garage ramp is on the right side of the building.</div></div>
-        <div class="photo-card"><img src="assets/garage-ramp-post.jpg" alt="Garage ramp and white key post"><div class="caption">Use the lobby key in the white post.</div></div>
-      </div>
-      <div class="photo-card"><img src="assets/garage-recycling-door.jpg" alt="Garage interior with recycling and private garage"><div class="caption">Our private garage is at the end; trash and recycling are on either side.</div></div>
-    </div>
-  </details>
-
-  <details id="terrace"><summary>🌿 Apartment Terrace & Balconies</summary>
-    <div class="inside">
-      <div class="video-card"><video src="assets/downstairs-terrace-remote.mp4" controls playsinline preload="metadata"></video><div class="video-label"><strong>▶ Apartment terrace remote</strong><span>Quick guide</span></div></div>
-      <ul class="check"><li>Retract the awning whenever you leave.</li><li>Bring cushions and covers back if used.</li><li>Close terrace doors when the AC is on.</li></ul>
-      <div class="warn"><strong>Riviera winds can arrive quickly.</strong></div>
-    </div>
-  </details>
-
-  <details id="rooftop" open><summary>🌅 Rooftop Terrace</summary>
-    <div class="inside">
-      <div class="video-card"><video src="assets/upper-terrace-remote.mp4" controls playsinline preload="metadata"></video><div class="video-label"><strong>▶ Rooftop terrace remote</strong><span>Quick guide</span></div></div>
-      <div class="photo-card"><img src="assets/rooftop-dining.jpg" alt="Rooftop terrace dining table facing sea"><div class="caption">Dining table, seating area, and Mediterranean view.</div></div>
-      <p>Exit the apartment, turn right before the elevator, and go up one flight. Use the rooftop terrace key.</p>
-      <ul><li>Outdoor kitchen has plates, glasses, napkins, serving items.</li><li>Bluetooth speaker, TRX, resistance bands, and yoga mats are in storage.</li><li>Awning remote is in the drawer next to the rooftop sink.</li><li>Outdoor shower is great for cooling off or rinsing sand.</li></ul>
-      <p>Please lock both the rooftop door and the stairwell door when you leave.</p>
-      <div class="two">
-        <div class="photo-card"><img src="assets/rooftop-med.jpg" alt="Rooftop Mediterranean panorama"><div class="caption">Panorama facing the Mediterranean.</div></div>
-        <div class="photo-card"><img src="assets/rooftop-loungers.jpg" alt="Rooftop loungers facing mountains"><div class="caption">Loungers facing the Alps.</div></div>
-      </div>
-      <div class="two">
-        <div class="photo-card"><img src="assets/rooftop-remote.jpg" alt="Rooftop awning remote"><div class="caption">Awning remote: drawer next to rooftop sink.</div></div>
-        <div class="photo-card"><img src="assets/rooftop-speaker-trx.jpg" alt="Bluetooth speaker and exercise equipment"><div class="caption">Bluetooth speaker, TRX, resistance bands, and yoga mats.</div></div>
-      </div>
-      <div class="tip">Our favorite time up here is about an hour before sunset.</div>
-    </div>
-  </details>
-
-  <details id="ac"><summary>❄️ Air Conditioning</summary>
-    <div class="inside"><ul><li>Three units: one in each bedroom and one in the kitchen/living room.</li><li>Kitchen unit works best when bedroom doors are closed.</li><li>Turn off units in rooms you aren't using.</li><li>Close shutters and terrace doors at night to keep cool and block morning sun.</li></ul></div>
-  </details>
-
-  <details id="beds"><summary>🛏 Bedrooms & Storage</summary>
-    <div class="inside"><p><strong>Primary Bedroom:</strong> queen-size bed, full closet, private balcony.</p><p><strong>Sleeping Room:</strong> trundle bed; pull second mattress from underneath. Balcony, no closet.</p><p><strong>Living Room:</strong> sleeper sofa.</p><p><strong>Storage:</strong> primary closet plus hallway closet with hanging space and fabric shelving. Bathrooms have storage for toiletries.</p></div>
-  </details>
-</section>
-
-<section class="page" id="kitchen">
-  <h2>🍽 Kitchen & Everyday Living</h2>
-  <details open><summary>☕ Coffee</summary>
-    <div class="inside"><p>The Krups machine makes excellent coffee using whole beans or ground coffee.</p><div class="map-btns"><a href="https://youtu.be/1GVhL0dfIG4?si=UF39qWq2HOTTHjjN" target="_blank">▶️ Coffee Basics video</a><a href="#coffee-help">☕ Coffee Help</a></div><div class="tip">Recently cleaned and descaled. If the red <strong>CALC</strong> light appears to the right of Start, you still have about 30 cups before descaling is necessary.</div><div class="photo-card"><img src="assets/coffee-qr.jpg" alt="Coffee machine QR code on water reservoir"><div class="caption">QR code is on the back of the water reservoir.</div></div></div>
-  </details>
-  <details><summary>🧺 Laundry</summary>
-    <div class="inside"><ul><li>Use <strong>30°C</strong> for most loads.</li><li>Detergent is beneath the oven.</li><li>Use about two tablespoons.</li><li>Washes but does not dry.</li><li>Drying rack is on the apartment terrace outside the kitchen.</li></ul><div class="video-wrap"><video src="assets/laundry-video.mp4" controls playsinline></video></div></div>
-  </details>
-  <details><summary>🛒 Groceries</summary>
-    <div class="inside"><p>Closest store: <strong>U Express</strong>, a short walk toward town.</p><p>Folding grocery cart: coat closet near the front door.</p><div class="map-btns"><a href="https://maps.app.goo.gl/cvTfHvuVJFGkM6ug7" target="_blank">📍 U Express</a><a href="https://maps.app.goo.gl/tFMmJWW9DSjf1GDS6" target="_blank">📍 Naturalia</a></div></div>
-  </details>
-  <details><summary>♻️ Garbage & Recycling</summary>
-    <div class="inside"><p>Garbage and recycling room is on the <strong>SS / garage</strong> level.</p><p>Glass is collected separately. Empty recyclables directly into the container; don't leave them in plastic bags.</p><div class="photo-card"><img src="assets/garage-recycling-door.jpg" alt="Garage trash and recycling area"><div class="caption">Trash and recycling are on the SS / garage level.</div></div></div>
-  </details>
-</section>
-
-<section class="page" id="getting">
-  <h2>🚆 Getting Around</h2>
-  <details open><summary>🚆 Trains</summary><div class="inside"><p><strong>Menton Garavan</strong> station is 3–5 minutes away.</p><p><strong>Italy:</strong> opposite platform via underpass. <strong>Monaco / Nice:</strong> platform closest to apartment.</p><p>Use SNCF Connect for tickets and schedules.</p><div class="map-btns"><a href="https://maps.app.goo.gl/RB7cbdBprN1Rk84S9" target="_blank">📍 Garavan Station</a><a href="https://www.sncf-connect.com" target="_blank">🚆 SNCF Connect</a></div></div></details>
-  <details><summary>🚌 Buses</summary><div class="inside"><p>Nearest stop is outside the building to the left. Tap credit card, Apple Pay, or Google Pay. Press red STOP before your stop.</p><p>Most routes stop around 7:00–7:30 p.m.</p></div></details>
-  <details><summary>🚲 Bikes</summary><div class="inside"><p>Across the street, down the stairs to the lower level, turn right for <strong>R Bicycles</strong>. Traditional bikes about €20/day; electric about €40/day. Feel free to use our helmets.</p></div></details>
-  <details><summary>🚕 Uber & Bolt</summary><div class="inside"><p>Uber works but can be expensive for short trips. Bolt may be cheaper.</p><div class="map-btns"><a href="https://bolt.eu" target="_blank">Bolt</a><a href="https://www.uber.com" target="_blank">Uber</a><a href="https://www.g7.fr" target="_blank">G7 Taxi</a></div></div></details>
-  <details><summary>🚶 Walking</summary><div class="inside"><ul><li>Beach — 2 minutes</li><li>Garavan Station — 3–5 minutes</li><li>U Express — 5–7 minutes</li><li>Old Town — 20–25 minutes</li></ul></div></details>
-</section>
-
-<section class="page" id="favorites">
-  <h2>🍋 Our Favorites</h2>
-  <p class="sub">A mix of places we love personally and recommendations from trusted local chefs, restaurateurs, and serious food people.</p>
-  <div class="nav-grid">
-    <div class="card"><span class="badge">🥐 Bakery</span><h3>Atelier Boulanger</h3><p>Favorite croissants and pain au chocolat. Go early.</p><div class="map-btns"><a href="https://maps.app.goo.gl/ciGBxV9FUPEbY5EJ6" target="_blank">📍 Maps</a></div></div>
-    <div class="card"><span class="badge">🍰 Pâtisserie</span><h3>AVE Pâtisserie</h3><p>Beautiful pastries and desserts.</p><div class="map-btns"><a href="https://maps.app.goo.gl/besLAG4zgS7ZeRkg6" target="_blank">📍 Maps</a></div></div>
-    <div class="card"><span class="badge">☕ Coffee</span><h3>Eunoia Coffee Shop</h3><p>Wonderful coffee and creative brunches. Check hours.</p><div class="map-btns"><a href="https://maps.app.goo.gl/i293VyzQABoU5WmT6" target="_blank">📍 Maps</a></div></div>
-    <div class="card"><span class="badge">🛒 Public Market</span><h3>Marché des Halles</h3><p>Menton’s covered public market for produce, cheese, seafood, flowers, olives, meats, spices, and local specialties. Wander, shop, or pick up lunch.</p><div class="map-btns"><a href="https://maps.app.goo.gl/VtxcJi7o2TeL1o739" target="_blank">📍 Maps</a></div></div>
-    <div class="card"><span class="badge">🇮🇹 Italian Market</span><h3>Ventimiglia Market</h3><p>Train to Italy for fresh pasta, produce, cheese, and olive oil.</p><div class="map-btns"><a href="https://maps.app.goo.gl/TWkbB22psKvZXqs68" target="_blank">📍 Maps</a></div></div>
-    <div class="card"><span class="badge">🍕 Casual</span><h3>Pizza e Basta</h3><p>Easy evening close to home.</p><div class="map-btns"><a href="https://maps.app.goo.gl/Fqrzuc3Yg7uQQSNLA" target="_blank">📍 Maps</a></div></div>
-    <div class="card"><span class="badge">🍕 Pizza</span><h3>La Pecora Negra</h3><p>Pizza and a casual Italian evening.</p><div class="map-btns"><a href="https://maps.app.goo.gl/vZf9abaY3Gq6CWg16" target="_blank">📍 Maps</a></div></div>
-    <div class="card"><span class="badge">🚶 Walkable</span><h3>Côtes de Menton</h3><p>Neighborhood favorite, about a block away.</p><div class="map-btns"><a href="https://maps.app.goo.gl/2Lu3SJZNgfhyJ7V39" target="_blank">📍 Maps</a></div></div>
-    <div class="card"><span class="badge">🍽 Downtown</span><h3>Le Stanley</h3><p>Dependable downtown favorite.</p><div class="map-btns"><a href="https://maps.app.goo.gl/qMAGcRNaFNzu7xcB8" target="_blank">📍 Maps</a></div></div>
-    <div class="card"><span class="badge">🥂 Upscale</span><h3>Tony's</h3><p>A little more upscale.</p><div class="map-btns"><a href="https://maps.app.goo.gl/RPzp5aN4XDAcBbn39" target="_blank">📍 Maps</a></div></div>
-    <div class="card"><span class="badge">👨‍🍳 Chef Recommended</span><h3>🍝 La Trattoria</h3><p>Highly recommended by local chefs, food lovers, and residents for authentic Italian cuisine.</p><div class="map-btns"><a href="https://share.google/J1NYqgy2jk7A7b51Q" target="_blank">📍 Maps</a></div></div>
-    <div class="card"><span class="badge">👨‍🍳 Chef Recommended</span><h3>🇫🇷 Le Bistrot des Jardins</h3><p>Highly recommended for classic French cooking and a traditional bistro experience.</p><div class="map-btns"><a href="https://share.google/As2sNxulr7mmnjWEc" target="_blank">📍 Maps</a></div></div>
-    <div class="card"><span class="badge">🥂 Celebration</span><h3>⭐ L’Orangeraie</h3><p>A favorite local recommendation for fine dining, celebrations, and special occasions.</p><div class="map-btns"><a href="https://share.google/As2sNxulr7mmnjWEc" target="_blank">📍 Maps</a></div></div>
-    <div class="card"><span class="badge">👨‍🍳 Chef Recommended</span><h3>🥘 La Mandragore</h3><p>Recommended by local chefs and food enthusiasts for authentic local cuisine in a relaxed bistro setting.</p><div class="map-btns"><a href="https://share.google/2sg21cvNweLTY3dl2" target="_blank">📍 Maps</a></div></div>
-    <div class="card"><span class="badge">❤️ Our Favorite</span><h3>🌅 Côté Sud</h3><p>The one we’ve been to ourselves. Great atmosphere inside and out; the interior feels especially unique, warm, and authentic. A beautiful choice for a long lunch, sunset dinner, or celebration.</p><div class="map-btns"><a href="https://maps.app.goo.gl/v3TKoACo4hc9cWhj8" target="_blank">📍 Maps</a></div></div>
-    <div class="card"><span class="badge">🏖 Beach Club</span><h3>Les Sablettes Beach Club</h3><p>Loungers, umbrellas, food, drinks, showers, shade.</p><div class="map-btns"><a href="https://maps.app.goo.gl/jdgukbmEAFBaY74H9" target="_blank">📍 Maps</a></div></div>
-  </div>
-</section>
-
-<section class="page" id="wish">
-  <h2>🌞 Things We Wish We'd Known</h2>
-  <div class="nav-grid">
-    <div class="card"><h3>🌅 Life Happens Later</h3><p>Summer sunsets are often 9:00–9:30 p.m. Dinner at 8:30 or 9:00 is normal.</p></div>
-    <div class="card"><h3>🚶 Walk More</h3><p>We assumed we'd use the car. Instead, we walk almost everywhere.</p></div>
-    <div class="card"><h3>🚆 Train Is Your Friend</h3><p>No parking, no traffic, beautiful scenery.</p></div>
-    <div class="card"><h3>🛒 Shop Like a Local</h3><p>Bakery, market, or grocery every day or two. Fresh everything.</p></div>
-    <div class="card"><h3>🏖 Try a Beach Club</h3><p>Worth it for a relaxing afternoon.</p></div>
-    <div class="card"><h3>🌬 Respect the Wind</h3><p>Retract awnings whenever finished.</p></div>
-    <div class="card"><h3>🇮🇹 Italy Is Next Door</h3><p>A short train ride for lunch, shopping, or a market morning.</p></div>
-    <div class="card"><h3>❤️ Slow Down</h3><p>You don't need to fill every hour. Menton rewards wandering.</p></div>
-  </div>
-</section>
-
-<section class="page" id="find">
-  <h2>📍 Find It</h2>
-  <input class="search" id="findSearch" type="search" placeholder="Find: wine opener, flashlight, remote...">
-  <div class="nav-grid" id="findGrid">
-    <div class="card"><h3>☕ Coffee</h3><p>Beans, ground coffee, cleaning tablets, descaling powder — top shelf above machine. QR code — back of water reservoir. Stovetop espresso maker — upper left kitchen cabinet.</p></div>
-    <div class="card"><h3>🍽 Kitchen</h3><p>Paper plates and napkins — upper rooftop terrace kitchen cabinet. Serving pieces — various cabinets. Wine opener — kitchen drawer. Large aluminum bowls — kitchen cabinet.</p></div>
-    <div class="card"><h3>🧺 Laundry</h3><p>Detergent — cabinet beneath oven. Drying rack — apartment terrace outside kitchen.</p></div>
-    <div class="card"><h3>🛒 Shopping</h3><p>Rolling grocery cart — coat closet near front door.</p></div>
-    <div class="card"><h3>🌿 Rooftop</h3><p>Bluetooth speaker, yoga mats, TRX, resistance bands — storage cabinet. Standing fan — living room. Awning remote — drawer next to rooftop sink.</p></div>
-    <div class="card"><h3>🏖 Beach</h3><p>Beach chairs and umbrellas — garage.</p></div>
-    <div class="card"><h3>🧹 Cleaning</h3><p>Vacuum — right of oven. Swiffer — hall closet.</p></div>
-    <div class="card"><h3>📺 Technology</h3><p>TV remotes — respective rooms. AC remotes — mounted with units. Wi‑Fi — Arrive section.</p></div>
-    <div class="card"><h3>🚑 Safety</h3><p>Flashlight — top shelf of coat closet. Nearest pharmacy — see Medical Care.</p></div>
-  </div>
-</section>
-
-<section class="page" id="before-arrive">
-  <h2>✈️ Before You Arrive</h2>
-  <details><summary>🚄 Long-Distance Trains</summary><div class="inside"><p>Book early. Reserve seats when possible; we prefer the upper level, close to luggage storage. Most Riviera trains leave from Gare de Lyon. Arrive 45–60 minutes early; platforms may appear only 15–20 minutes before departure.</p></div></details>
-  <details><summary>📱 Apps</summary><div class="inside"><div class="map-btns"><a href="https://www.sncf-connect.com" target="_blank">SNCF</a><a href="https://www.iledefrance-mobilites.fr" target="_blank">IDF Mobilités</a><a href="https://www.getyourguide.com" target="_blank">GetYourGuide</a><a href="https://bolt.eu" target="_blank">Bolt</a><a href="https://www.uber.com" target="_blank">Uber</a><a href="https://www.g7.fr" target="_blank">G7 Taxi</a></div><p><strong>Guide:</strong> Victor Bejan, WhatsApp +33 6 31 25 79 17.</p><p><strong>Tour idea:</strong> Molinard Perfume Workshop in Grasse.</p></div></details>
-</section>
-
-<section class="page" id="checkout">
-  <h2>🚪 Leave / Checkout</h2>
-  <ul class="check">
-    <li>Turn off air conditioning.</li><li>Close and lock terrace doors.</li><li>Retract both awnings.</li><li>Return cushions and furniture covers if used.</li><li>Put away anything that could blow away.</li><li>Lock rooftop terrace door and stairwell door.</li><li>Take out garbage and recycling if needed.</li><li>Check for chargers, passports, and personal items.</li><li>Leave keys as arranged.</li>
-  </ul>
-  <div class="tip">Thank you for taking such good care of our home.</div>
-</section>
-
-<section class="page" id="coffee-help">
-  <h2>☕ Coffee Help</h2>
-  <p>Red <strong>CALC</strong> light means the machine needs attention soon. It appears after about 200 cups; you still have about 30 cups.</p>
-  <ol><li>Lift out the water reservoir.</li><li>Scan the QR code on the back.</li><li>Cleaning tablets and descaling powder are on the top shelf above the machine.</li><li>Use a large aluminum mixing bowl under the spouts.</li></ol>
-  <div class="map-btns"><a href="https://youtu.be/lQUMR8pxMWI?si=2SJq6hfloFb0f0Eu" target="_blank">▶️ Official Krups cleaning & descaling video</a></div>
-</section>
-
+<section class="view" id="view-explore"><div class="page-head"><button class="back" data-go="home">← Home</button><h2>🍋 Explore Menton</h2></div><div class="grid"><div class="section-card"><h3>🌅 Life Happens Later</h3><p>Summer sunsets are often 9:00–9:30 p.m. Dinner at 8:30 or 9:00 is normal.</p></div><div class="section-card"><h3>🚶 Walk More</h3><p>We thought we would use the car. We walk almost everywhere.</p></div><div class="section-card"><h3>🚆 Take the Train</h3><p>No parking, no traffic and beautiful scenery.</p></div><div class="section-card"><h3>🏖 Try a Beach Club</h3><p>Worth it for a relaxing afternoon with shade, loungers and service.</p></div><div class="section-card"><h3>🇮🇹 Italy Is Next Door</h3><p>Ventimiglia is a short train ride for lunch, shopping or market morning.</p></div><div class="section-card"><h3>❤️ Slow Down</h3><p>You do not need to fill every hour. Menton rewards wandering.</p></div></div></section>
+<section class="view" id="view-favorites"><div class="page-head"><button class="back" data-go="home">← Home</button><h2>❤️ Favorites</h2></div><p class="sub">Places we love personally and recommendations from trusted local chefs and food people.</p><div class="grid"><div class="section-card restaurant"><span class="badge">❤️ Our Favorite</span><h3>🌅 Côté Sud</h3><p>The one we have experienced ourselves. Great atmosphere inside and out; the interior feels especially unique, warm and authentic.</p><div class="actions"><a class="pill" href="https://maps.app.goo.gl/v3TKoACo4hc9cWhj8" target="_blank">📍 Maps</a></div></div><div class="section-card restaurant"><span class="badge">👨‍🍳 Chef Recommended</span><h3>🍝 La Trattoria</h3><p>Highly recommended by local chefs, food lovers and residents for authentic Italian cooking.</p><div class="actions"><a class="pill" href="https://share.google/J1NYqgy2jk7A7b51Q" target="_blank">📍 Maps</a></div></div><div class="section-card restaurant"><span class="badge">👨‍🍳 Chef Recommended</span><h3>🇫🇷 Le Bistrot des Jardins</h3><p>Highly recommended for classic French cooking and a traditional bistro experience.</p><div class="actions"><a class="pill" href="https://share.google/As2sNxulr7mmnjWEc" target="_blank">📍 Maps</a></div></div><div class="section-card restaurant"><span class="badge">🥂 Celebration</span><h3>⭐ L’Orangeraie</h3><p>A favorite local recommendation for fine dining, celebrations and special occasions.</p><div class="actions"><a class="pill" href="https://share.google/As2sNxulr7mmnjWEc" target="_blank">📍 Maps</a></div></div><div class="section-card restaurant"><span class="badge">👨‍🍳 Chef Recommended</span><h3>🥘 La Mandragore</h3><p>Recommended for authentic local cuisine in a relaxed bistro setting.</p><div class="actions"><a class="pill" href="https://share.google/2sg21cvNweLTY3dl2" target="_blank">📍 Maps</a></div></div><div class="section-card restaurant"><span class="badge">🚶 Walkable</span><h3>Côtes de Menton</h3><p>Easy neighborhood option about a block from the apartment.</p><div class="actions"><a class="pill" href="https://maps.app.goo.gl/2Lu3SJZNgfhyJ7V39" target="_blank">📍 Maps</a></div></div><div class="section-card restaurant"><span class="badge">🍕 Pizza</span><h3>La Pecora Negra</h3><p>Pizza and a casual Italian evening.</p><div class="actions"><a class="pill" href="https://maps.app.goo.gl/vZf9abaY3Gq6CWg16" target="_blank">📍 Maps</a></div></div><div class="section-card restaurant"><span class="badge">🥐 Bakery</span><h3>Atelier Boulanger</h3><p>Favorite croissants and pain au chocolat. Go early.</p><div class="actions"><a class="pill" href="https://maps.app.goo.gl/ciGBxV9FUPEbY5EJ6" target="_blank">📍 Maps</a></div></div><div class="section-card restaurant"><span class="badge">☕ Coffee</span><h3>Eunoia Coffee Shop</h3><p>Wonderful coffee and creative brunches. Check hours.</p><div class="actions"><a class="pill" href="https://maps.app.goo.gl/i293VyzQABoU5WmT6" target="_blank">📍 Maps</a></div></div><div class="section-card restaurant"><span class="badge">🏖 Beach Club</span><h3>Les Sablettes</h3><p>Loungers, umbrellas, food, drinks, showers and shade.</p><div class="actions"><a class="pill" href="https://maps.app.goo.gl/jdgukbmEAFBaY74H9" target="_blank">📍 Maps</a></div></div></div></section>
+<section class="view" id="view-markets"><div class="page-head"><button class="back" data-go="home">← Home</button><h2>🛒 Markets</h2></div><div class="section-card"><span class="badge">Public Market</span><h3>Marché des Halles</h3><p>Menton's covered public market for produce, cheese, seafood, flowers, olives, meats, spices and local specialties. Wander, shop or pick up lunch.</p><div class="actions"><a class="pill" href="https://maps.app.goo.gl/VtxcJi7o2TeL1o739" target="_blank">📍 Maps</a></div></div><div class="section-card"><span class="badge">Italian Market</span><h3>Ventimiglia Market</h3><p>Take the train to Italy for fresh pasta, produce, cheese and olive oil.</p><div class="actions"><a class="pill" href="https://maps.app.goo.gl/TWkbB22psKvZXqs68" target="_blank">📍 Maps</a></div></div></section>
+<section class="view" id="view-around"><div class="page-head"><button class="back" data-go="home">← Home</button><h2>🚆 Getting Around</h2></div><div class="section-card"><h3>🚆 Trains</h3><p><strong>Menton Garavan</strong> is 3–5 minutes away. Italy is via the opposite platform and underpass. Monaco and Nice use the platform closest to the apartment.</p><div class="actions"><a class="pill" href="https://maps.app.goo.gl/RB7cbdBprN1Rk84S9" target="_blank">📍 Garavan Station</a><a class="pill" href="https://www.sncf-connect.com" target="_blank">🚆 SNCF Connect</a></div></div><div class="section-card"><h3>🚌 Buses</h3><p>The nearest stop is outside the building. Tap a card, Apple Pay or Google Pay. Press the red STOP button before your stop.</p></div><div class="section-card"><h3>🚲 Bikes</h3><p>R Bicycles is across the street on the lower level. Traditional and electric bikes are available.</p></div><div class="section-card"><h3>🚕 Uber & Bolt</h3><p>Uber works; Bolt may be less expensive for short trips.</p><div class="actions"><a class="pill" href="https://bolt.eu" target="_blank">Bolt</a><a class="pill" href="https://www.uber.com" target="_blank">Uber</a></div></div><div class="section-card"><h3>🚶 Walking</h3><p>Beach: 2 minutes • Garavan station: 3–5 minutes • U Express: 5–7 minutes • Old Town: 20–25 minutes.</p></div></section>
+<section class="view" id="view-help"><div class="page-head"><button class="back" data-go="home">← Home</button><h2>🆘 Need Help</h2></div><div class="section-card"><h3>Emanuela Ménage</h3><p>Cleaning • Emergencies • Questions</p><div class="actions"><a class="pill" href="tel:+393398935689">📞 Call</a><a class="pill" href="https://wa.me/393398935689" target="_blank">💬 WhatsApp</a><a class="pill" href="https://maps.app.goo.gl/7fVJLWtbBbVjhtD87" target="_blank">🏠 Directions Home</a></div><div class="tip owner-only"><strong>Family & Friends:</strong> Jack and Donna's direct contact information is shared separately.</div></div><div class="section-card" id="medical"><h3>🚑 Emergency & Doctor Resources</h3><p><strong>Life-threatening emergency:</strong> call <a href="tel:112"><strong>112</strong></a>.</p><p><strong>Find a doctor:</strong> use Doctolib.</p><p><strong>Minor issue:</strong> start with the nearest pharmacy.</p><p><strong>Unsure:</strong> contact Emanuela.</p><div class="actions"><a class="pill" href="tel:112">🚑 Call 112</a><a class="pill" href="https://www.doctolib.fr" target="_blank">🩺 Doctolib</a><a class="pill" href="https://maps.app.goo.gl/ak6qqa1o4akoAbnb8" target="_blank">💊 Nearest Pharmacy</a></div></div></section>
 </main>
-
-<button class="help-fab" id="helpBtn" aria-expanded="false" aria-controls="helpPanel">Need Help?</button>
-<div class="help-backdrop" id="helpBackdrop"></div>
-<div class="help-panel" id="helpPanel" role="dialog" aria-label="Need Help">
-  <h3>Need Help?</h3>
-  <p><strong>Emanuela Ménage</strong><br>Cleaning • Emergencies • Questions</p>
-  <div class="help-actions">
-    <a href="#keys">🔑 Unlocking the Apartment</a>
-    <a href="tel:+393398935689">📞 Call Emanuela</a>
-    <a href="https://wa.me/393398935689" target="_blank">💬 WhatsApp Emanuela</a>
-    <a href="https://maps.app.goo.gl/7fVJLWtbBbVjhtD87" target="_blank">🏠 Directions Home</a>
-    <a href="#medical">🚑 Medical</a>
-  </div>
+<footer>Created with love for our family and friends.</footer>
 </div>
-
-<nav class="bottom">
-  <a href="#arrive"><b>⭐</b>Arrive</a><a href="#home"><b>🏠</b>Home</a><a href="#getting"><b>🚆</b>Around</a><a href="#favorites"><b>🍋</b>Favorites</a><a href="#find"><b>📍</b>Find</a><a href="#checkout"><b>🚪</b>Checkout</a>
-</nav>
-<footer>Created with love for our family and friends. We hope you enjoy our little corner of Menton as much as we do.</footer>
-
+<nav class="bottom"><button data-go="home" class="active"><b>⌂</b>Home</button><button data-go="apartment"><b>🏠</b>Apartment</button><button data-go="favorites"><b>❤️</b>Favorites</button><button data-go="find"><b>🔍</b>Find</button><button data-go="help"><b>🆘</b>Help</button></nav>
+<div class="modal" id="videoModal"><div class="modal-card"><div class="modal-head"><h3 id="videoTitle">Video</h3><button class="close" id="closeVideo">Close</button></div><video id="videoPlayer" controls playsinline></video></div></div>
 <script>
-const FAMILY_PASSWORD = "Menton2026";
-const GUEST_PASSWORD = "Happy2026";
-const gate = document.getElementById("gate");
-const pw = document.getElementById("pw");
-const err = document.getElementById("err");
-function unlock(){
-  const v = pw.value.trim();
-  if(v === FAMILY_PASSWORD || v === GUEST_PASSWORD){
-    const mode = v === FAMILY_PASSWORD ? "family" : "guest";
-    sessionStorage.setItem("mentonGuideUnlocked", mode);
-    document.body.classList.remove("locked");
-    if(mode === "family") document.body.classList.add("family");
-    gate.style.display = "none";
-    location.hash = "#top";
-  } else {
-    err.textContent = "Try again.";
-  }
-}
-document.getElementById("unlock").addEventListener("click", unlock);
-pw.addEventListener("keydown", e => { if(e.key === "Enter") unlock(); });
-const savedMode = sessionStorage.getItem("mentonGuideUnlocked");
-if(savedMode){
-  document.body.classList.remove("locked");
-  if(savedMode === "family") document.body.classList.add("family");
-  gate.style.display="none";
-}
-
-const helpBtn = document.getElementById("helpBtn");
-const helpPanel = document.getElementById("helpPanel");
-const helpBackdrop = document.getElementById("helpBackdrop");
-function setHelp(open){
-  helpPanel.classList.toggle("open", open);
-  helpBackdrop.classList.toggle("open", open);
-  helpBtn.setAttribute("aria-expanded", open ? "true" : "false");
-}
-helpBtn.addEventListener("click", () => setHelp(!helpPanel.classList.contains("open")));
-helpBackdrop.addEventListener("click", () => setHelp(false));
-helpPanel.querySelectorAll("a").forEach(a => a.addEventListener("click", () => setHelp(false)));
-document.addEventListener("keydown", e => { if(e.key === "Escape") setHelp(false); });
-
-const fs = document.getElementById("findSearch");
-if(fs) fs.addEventListener("input", () => {
-  const q = fs.value.trim().toLowerCase();
-  document.querySelectorAll("#findGrid .card").forEach(c => c.classList.toggle("hidden", q && !c.innerText.toLowerCase().includes(q)));
-});
-
-const s = document.getElementById("search");
-if(s) s.addEventListener("keydown", e => {
-  if(e.key === "Enter"){
-    const q = s.value.trim().toLowerCase();
-    if(!q) return;
-    const hit = [...document.querySelectorAll("section,details,.card")].find(el => el.innerText.toLowerCase().includes(q));
-    if(hit){ if(hit.tagName === "DETAILS") hit.open = true; hit.scrollIntoView({behavior:"smooth",block:"start"}); }
-  }
-});
+const FAMILY_PASSWORD="Menton2026",GUEST_PASSWORD="Happy2026";
+const gate=document.getElementById('gate'),pw=document.getElementById('pw'),err=document.getElementById('err');
+function unlock(){const v=pw.value.trim();if(v===FAMILY_PASSWORD||v===GUEST_PASSWORD){const mode=v===FAMILY_PASSWORD?'family':'guest';sessionStorage.setItem('mentonGuideUnlocked',mode);document.body.classList.remove('locked');document.body.classList.toggle('family',mode==='family');gate.style.display='none';showView('home');}else err.textContent='Try again.'}
+document.getElementById('unlock').onclick=unlock;pw.addEventListener('keydown',e=>{if(e.key==='Enter')unlock()});const saved=sessionStorage.getItem('mentonGuideUnlocked');if(saved){document.body.classList.remove('locked');document.body.classList.toggle('family',saved==='family');gate.style.display='none'}
+function showView(name){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));const target=document.getElementById('view-'+name)||document.getElementById('view-home');target.classList.add('active');document.querySelectorAll('.bottom button').forEach(b=>b.classList.toggle('active',b.dataset.go===name));window.scrollTo({top:name==='home'?0:document.querySelector('main').offsetTop-8,behavior:'smooth'});history.replaceState(null,'','#'+name)}
+document.addEventListener('click',e=>{const go=e.target.closest('[data-go]');if(go){showView(go.dataset.go);return}const play=e.target.closest('[data-video]');if(play){openVideo(play.dataset.video,play.dataset.title)}});
+const modal=document.getElementById('videoModal'),player=document.getElementById('videoPlayer'),videoTitle=document.getElementById('videoTitle');function openVideo(src,title){player.src=src;videoTitle.textContent=title;modal.classList.add('open');player.play().catch(()=>{})}function closeVideo(){player.pause();player.removeAttribute('src');player.load();modal.classList.remove('open')}document.getElementById('closeVideo').onclick=closeVideo;modal.addEventListener('click',e=>{if(e.target===modal)closeVideo()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeVideo()});
+const fs=document.getElementById('findSearch');if(fs)fs.addEventListener('input',()=>{const q=fs.value.trim().toLowerCase();document.querySelectorAll('#findGrid .section-card').forEach(c=>c.classList.toggle('hidden',q&&!c.innerText.toLowerCase().includes(q)))});
+const initial=location.hash.replace('#','');if(initial&&document.getElementById('view-'+initial))showView(initial);
 </script>
 </body>
 </html>
